@@ -25,6 +25,20 @@
         .project-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; }
         .project-card h3 { margin-top: 0; color: #2980b9; }
         .tech-stack { font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 10px; }
+
+        .image-box {
+            width: 300px;  /* Specify the desired width of the box */
+            height: 200px; /* Specify the desired height of the box */
+            border: 2px solid black; /* Optional: adds a border to visualize the box */
+            overflow: hidden; /* Ensures any excess image is clipped */
+          }
+        
+          .image-box img {
+            width: 100%;   /* Makes the image take the full width of its container */
+            height: 100%;  /* Makes the image take the full height of its container */
+            object-fit: cover; /* Controls how the image fits within the container */
+          }
+        
     </style>
 </head>
     <nav style="text-align: right; margin-bottom: 30px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
@@ -46,7 +60,7 @@
 
         <div class="project-card">
             <h3>Humanization in Task-oriented Conversational Agents</h3>
-            <p class="tech-stack"><strong>Tools:</strong> Python, Algorithms</p>
+            <p class="tech-stack"><strong>Tools:</strong> Python, Algorithms, Hierarchical State Transition Network</p>
             <p> 
                 A short-term, extended task-oriented conversation system designed to gather user feedback about a lecture in a user-centered manner. The system leverages hierarchical state transitions to guide the conversation effectively.
                 <br>
@@ -61,6 +75,9 @@
                     <li><b>Scalability within Blocks:</b>While the number of superstates is capped at four, each block can handle an unlimited number of individual questions.</li>
                 </ul>
             </p>
+            <div class="image-box">
+              <img src="HSTN.png" alt="HSTN">
+            </div>
         </div>
 
         <div class="project-card">
