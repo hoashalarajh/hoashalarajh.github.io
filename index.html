@@ -18,8 +18,8 @@
         /* Flexbox layout to align photo and text side-by-side */
         header { 
             display: flex; 
-            align-items: center; /* Vertically centers the text with the image */
-            gap: 30px; /* Adds space between the photo and the text */
+            align-items: center; 
+            gap: 30px; 
             margin-bottom: 40px; 
         }
         
@@ -27,14 +27,19 @@
         .profile-pic {
             width: 150px;
             height: 150px;
-            border-radius: 50%; /* Makes it circular */
-            object-fit: cover; /* Prevents stretching */
+            border-radius: 50%; 
+            object-fit: cover; 
             border: 3px solid #2c3e50;
-            flex-shrink: 0; /* Prevents the image from shrinking on smaller screens */
+            flex-shrink: 0; 
         }
 
         .header-text h1 { color: #2c3e50; margin: 0 0 5px 0; }
-        .header-text p.subtitle { color: #555; font-style: italic; margin: 0; font-size: 1.1em; }
+        .header-text p.subtitle { color: #555; font-style: italic; margin: 0 0 8px 0; font-size: 1.1em; }
+        
+        /* Contact Info Styling */
+        .header-text p.contact-info { margin: 0; font-size: 0.95em; }
+        .header-text p.contact-info a { color: #2980b9; text-decoration: none; }
+        .header-text p.contact-info a:hover { text-decoration: underline; }
         
         h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 5px; margin-top: 30px; }
         ul { list-style-type: none; padding: 0; }
@@ -49,15 +54,19 @@
         <div class="header-text">
             <h1>Hoashalarajh Rajendran</h1>
             <p class="subtitle">Electrical Engineer | Social Robotics & Autonomous Systems</p>
+            <p class="contact-info">
+                <a href="mailto:rajhoashal@gmail.com.com">rajhoashal@gmail.com</a> | 
+                <a href="tel:+94700000000">+94 77 922 4564</a>
+            </p>
         </div>
     </header>
 
     <section>
         <h2>About Me</h2>
         <p>
-            I am Hoashalarajh Rajendran, an Electrical Engineer from Trincomalee, Sri Lanka—a region known for its rich cultural heritage and long history. I was educated at T/R.K.M. Sri Koneswara Hindu College, where dedicated teachers laid the foundation for my academic and personal development.
-            I later earned my B.Sc. Engineering (Hons.) in Electrical Engineering from the University of Moratuwa, Sri Lanka’s leading technical university. I graduated with strong academic standing, complemented by professional internships at leading core electrical engineering companies in Sri Lanka.
-            Following my undergraduate studies, I completed a Master’s degree with a research focus on Human–Robot Interaction, an experience that significantly strengthened my analytical thinking, research methodology, and intellectual independence.
+        I am Hoashalarajh Rajendran, an Electrical Engineer from Trincomalee, Sri Lanka—a region known for its rich cultural heritage and long history. I was educated at T/R.K.M. Sri Koneswara Hindu College, where dedicated teachers laid the foundation for my academic and personal development.
+        I later earned my B.Sc. Engineering (Hons.) in Electrical Engineering from the University of Moratuwa, Sri Lanka’s leading technical university. I graduated with strong academic standing, complemented by professional internships at leading core electrical engineering companies in Sri Lanka.
+        Following my undergraduate studies, I completed a Master’s degree with a research focus on Human–Robot Interaction, an experience that significantly strengthened my analytical thinking, research methodology, and intellectual independence.
         </p>
     </section>
 
@@ -71,7 +80,7 @@
     </section>
 
     <footer style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd;">
-        <p>Contact: <a href="mailto:rajhoashal@gmail.com">rajhoashal@gmail.com</a></p>
+        <p>&copy; 2026 Hoashalarajh Rajendran</p>
     </footer>
 
 </body>
