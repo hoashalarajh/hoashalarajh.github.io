@@ -5,8 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hoashalarajh Rajendran | Engineering Portfolio</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 40px auto; max-width: 800px; padding: 0 20px; color: #333; background-color: #f9f9f9; }
-        header { text-align: center; margin-bottom: 40px; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            margin: 40px auto; 
+            max-width: 800px; 
+            padding: 0 20px; 
+            color: #333; 
+            background-color: #f9f9f9; 
+        }
+        
+        /* Flexbox layout to align photo and text side-by-side */
+        header { 
+            display: flex; 
+            align-items: center; /* Vertically centers the text with the image */
+            gap: 30px; /* Adds space between the photo and the text */
+            margin-bottom: 40px; 
+        }
         
         /* Profile Picture Styling */
         .profile-pic {
@@ -15,22 +30,26 @@
             border-radius: 50%; /* Makes it circular */
             object-fit: cover; /* Prevents stretching */
             border: 3px solid #2c3e50;
-            margin-bottom: 20px;
+            flex-shrink: 0; /* Prevents the image from shrinking on smaller screens */
         }
 
-        h1 { color: #2c3e50; margin: 10px 0; }
+        .header-text h1 { color: #2c3e50; margin: 0 0 5px 0; }
+        .header-text p.subtitle { color: #555; font-style: italic; margin: 0; font-size: 1.1em; }
+        
         h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 5px; margin-top: 30px; }
-        .subtitle { color: #555; font-style: italic; }
         ul { list-style-type: none; padding: 0; }
-        li { margin-bottom: 10px; background: #fff; padding: 10px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        li { margin-bottom: 10px; background: #fff; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="Hoashalarajh.png" alt="Hoashalarajh Rajendran" class="profile-pic">
-        <h1>Hoashalarajh Rajendran</h1>
-        <p class="subtitle">Electrical Engineer | Social Robotics & Autonomous Systems</p>
+        <img src="profile.jpg" alt="Hoashalarajh Rajendran" class="profile-pic">
+        
+        <div class="header-text">
+            <h1>Hoashalarajh Rajendran</h1>
+            <p class="subtitle">Electrical Engineer | Social Robotics & Autonomous Systems</p>
+        </div>
     </header>
 
     <section>
@@ -47,8 +66,8 @@
         </ul>
     </section>
 
-    <footer style="text-align: center; margin-top: 50px;">
-        <p>Contact: <a href="mailto:rajhoashal@gmail.com">your.email@example.com</a></p>
+    <footer style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd;">
+        <p>Contact: <a href="mailto:rajhoashal@gmail.com">rajhoashal@gmail.com</a></p>
     </footer>
 
 </body>
