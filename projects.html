@@ -26,18 +26,22 @@
         .project-card h3 { margin-top: 0; color: #2980b9; }
         .tech-stack { font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 10px; }
 
-        .image-box {
-            width: 300px;  /* Specify the desired width of the box */
-            height: 200px; /* Specify the desired height of the box */
-            border: 2px solid black; /* Optional: adds a border to visualize the box */
-            overflow: hidden; /* Ensures any excess image is clipped */
-          }
+        /* Project Image Gallery Styling */
+        .project-gallery {
+            display: flex;
+            gap: 15px; /* Space between images */
+            margin-top: 15px; /* Space above the images */
+            flex-wrap: wrap; /* Allows images to stack on smaller screens */
+        }
         
-          .image-box img {
-            width: 100%;   /* Makes the image take the full width of its container */
-            height: 100%;  /* Makes the image take the full height of its container */
-            object-fit: cover; /* Controls how the image fits within the container */
-          }
+        .project-img {
+            flex: 1 1 45%; /* Makes images take up roughly half the space each */
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px; /* Slight rounded corners */
+            border: 1px solid #ddd; /* Subtle border */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Soft shadow */
+        }
         
     </style>
 </head>
@@ -75,8 +79,8 @@
                     <li><b>Scalability within Blocks:</b>While the number of superstates is capped at four, each block can handle an unlimited number of individual questions.</li>
                 </ul>
             </p>
-            <div class="image-box">
-              <img src="HSTN.png" alt="HSTN", class=image-box>
+            <div class="project-gallery">
+              <img src="HSTN.png" alt="HSTN" class="project-img">
             </div>
         </div>
 
