@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Hoashalarajh Rajendran</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Same base styling as your home page */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 40px auto; max-width: 800px; padding: 0 20px; color: #333; background-color: #f9f9f9; }
+        header { display: flex; align-items: center; gap: 30px; margin-bottom: 20px; }
+        .profile-pic { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #2c3e50; flex-shrink: 0; }
+        .header-text h1 { color: #2c3e50; margin: 0 0 5px 0; font-size: 1.8em; }
+        .header-text p.subtitle { color: #555; font-style: italic; margin: 0; }
+        
+        /* Navigation Styling */
+        nav { text-align: center; margin-bottom: 30px; padding-bottom: 10px; border-bottom: 1px solid #ddd; }
+        nav a { margin-right: 20px; text-decoration: none; font-weight: bold; }
+        nav a.active { color: #2c3e50; }
+        nav a.inactive { color: #2980b9; }
+        nav a:hover { text-decoration: underline; }
+
+        /* Project specific styling */
+        h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 5px; margin-top: 30px; }
+        .project-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .project-card h3 { margin-top: 0; color: #2980b9; }
+        .tech-stack { font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="profile.jpg" alt="Hoashalarajh Rajendran" class="profile-pic">
+        <div class="header-text">
+            <h1>Hoashalarajh Rajendran</h1>
+            <p class="subtitle">Electrical Engineer | Social Robotics & Autonomous Systems</p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html" class="inactive">Home</a>
+        <a href="projects.html" class="active">Detailed Projects</a>
+    </nav>
+
+    <section>
+        <h2>Technical Projects</h2>
+
+        <div class="project-card">
+            <h3>Autonomous Mobile Robot Navigation</h3>
+            <p class="tech-stack"><strong>Tools:</strong> Python, ROS 2</p>
+            <p>Developed a 2D simulation of a differential drive robot designed to navigate dynamically around a human partner. Implemented particle filter algorithms to ensure accurate and robust localization within the simulated environment.</p>
+        </div>
+
+        <div class="project-card">
+            <h3>Real-Time Facial Expression Detection</h3>
+            <p class="tech-stack"><strong>Tools:</strong> ROS 2, OpenCV, MediaPipe</p>
+            <p>Engineered a complete ROS 2 package featuring custom nodes and launch files to perform real-time computer vision tasks. The system successfully detects faces and classifies expressions on the fly.</p>
+        </div>
+
+        <div class="project-card">
+            <h3>Low-Resource Language NLP</h3>
+            <p class="tech-stack"><strong>Tools:</strong> Python, Computational Modeling</p>
+            <p>Focused on building fundamental NLP resources for the Tamil language. Built a custom tokenizer from scratch using foundational rule-based and statistical methods, and contributed to the development of the Thirukkural Treebank.</p>
+        </div>
+    </section>
+
+    <footer style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd;">
+        <p>&copy; 2026 Hoashalarajh Rajendran</p>
+    </footer>
+
+</body>
+</html>
