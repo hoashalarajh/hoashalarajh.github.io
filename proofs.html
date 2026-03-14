@@ -43,13 +43,32 @@
             border: 1px solid #ddd; /* Subtle border */
             box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Soft shadow */
         }
+
+        /* Navigation Styling */
+        nav { 
+            text-align: right; 
+            margin-bottom: 30px; 
+            padding-bottom: 10px; 
+            border-bottom: 1px solid #ddd; 
+        }
+        nav a { 
+            margin-right: 20px; 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+        nav a:last-child {
+            margin-right: 0; /* Removes the margin from the very last link */
+        }
+        nav a.active { color: #2c3e50; }
+        nav a.inactive { color: #2980b9; }
+        nav a:hover { text-decoration: underline; }
         
     </style>
 </head>
-    <nav style="text-align: right; margin-bottom: 30px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
-    <a href="index.html" style="margin-right: 20px; text-decoration: none; font-weight: bold; color: #2c3e50;">Home</a>
-    <a href="projects.html" style="text-decoration: none; font-weight: bold; color: #2980b9;">Projects</a>
-    <a href="proofs.html" style="text-decoration: none; font-weight: bold; color: #2980b9;">Proofs</a>
+   <nav>
+        <a href="index.html" class="inactive">Home</a>
+        <a href="projects.html" class="inactive">Projects</a>
+        <a href="proofs.html" class="active">Proofs</a>
     </nav>
 <body>
 
