@@ -42,6 +42,14 @@
             border: 1px solid #ddd; /* Subtle border */
             box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Soft shadow */
         }
+
+        /* Make videos responsive */
+        video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px; /* Optional: matches your image styling */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Optional: matches your image styling */
+        }
         
     </style>
 </head>
@@ -99,7 +107,7 @@
             <br>
             <b>Video Demonstration of Digital Twin of the Electric Transformer Production line:</b>
             <br>
-            <video controls width="700">
+            <video controls>
                 <source src="digital_twin.mp4" type="video/mp4">
             </video>
 
