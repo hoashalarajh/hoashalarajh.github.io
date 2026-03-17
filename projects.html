@@ -6,51 +6,17 @@
     <title>Projects | Hoashalarajh Rajendran</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Same base styling as your home page */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 40px auto; max-width: 1280px; padding: 0 20px; color: #333; background-color: #f9f9f9; }
-        header { display: flex; align-items: center; gap: 30px; margin-bottom: 20px; }
-        .profile-pic { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #2c3e50; flex-shrink: 0; }
-        .header-text h1 { color: #2c3e50; margin: 0 0 5px 0; font-size: 1.8em; }
-        .header-text p.subtitle { color: #555; font-style: italic; margin: 0; }
-        
-        /* Navigation Styling */
-        nav { text-align: center; margin-bottom: 30px; padding-bottom: 10px; border-bottom: 1px solid #ddd; }
-        nav a { margin-right: 20px; text-decoration: none; font-weight: bold; }
-        nav a.active { color: #2c3e50; }
-        nav a.inactive { color: #2980b9; }
-        nav a:hover { text-decoration: underline; }
-
-        /* Project specific styling */
-        h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 5px; margin-top: 30px; }
-        .project-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        .project-card h3 { margin-top: 0; color: #2980b9; }
-        .tech-stack { font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 10px; }
-
-        /* Project Image Gallery Styling */
-        .project-gallery {
-            display: flex;
-            gap: 15px; /* Space between images */
-            margin-top: 15px; /* Space above the images */
-            flex-wrap: wrap; /* Allows images to stack on smaller screens */
+        /* Base styling */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            margin: 40px auto; 
+            max-width: 1280px; 
+            padding: 0 20px; 
+            color: #333; 
+            background-color: #f9f9f9; 
         }
         
-        .project-img {
-            flex: 1 1 45%; /* Makes images take up roughly half the space each */
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px; /* Slight rounded corners */
-            border: 1px solid #ddd; /* Subtle border */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Soft shadow */
-        }
-
-        /* Make videos responsive */
-        video {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px; /* Optional: matches your image styling */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Optional: matches your image styling */
-        }
-
         /* Navigation Styling */
         nav { 
             text-align: right; 
@@ -62,33 +28,114 @@
             margin-right: 20px; 
             text-decoration: none; 
             font-weight: bold; 
+            display: inline-block;
         }
         nav a:last-child {
-            margin-right: 0; /* Removes the margin from the very last link */
+            margin-right: 0; 
         }
         nav a.active { color: #2c3e50; }
         nav a.inactive { color: #2980b9; }
         nav a:hover { text-decoration: underline; }
+
+        /* Dropdown Styling - Fixed Hover Area Bridge */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: transparent; 
+            min-width: 250px;
+            z-index: 1000;
+            padding-top: 15px; 
+            margin-top: -5px; 
+            text-align: left;
+        }
+
+        .dropdown-items {
+            background-color: #fff;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: #2980b9 !important;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            margin-right: 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content a:last-child { border-bottom: none; }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            text-decoration: none !important;
+            color: #2c3e50 !important;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown .fa-chevron-down {
+            font-size: 0.7em;
+            margin-left: 5px;
+        }
+
+        /* Project specific styling */
+        h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 5px; margin-top: 30px; }
+        .project-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .project-card h3 { margin-top: 0; color: #2980b9; }
+        .tech-stack { font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 10px; }
+
+        .project-gallery {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
         
+        .project-img {
+            flex: 1 1 45%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
+<body>
 
     <nav>
         <a href="index.html" class="inactive">Home</a>
         <a href="projects.html" class="active">Projects</a>
         <a href="proofs.html" class="inactive">Proofs</a>
-        <a href="mercon.html" class="inactive">Paper Summary</a>
-    </nav>
-    
-<body>
-
-    <!--<header>
-        <img src="Hoashalarajh.jpg" alt="Hoashalarajh Rajendran" class="profile-pic">
-        <div class="header-text">
-            <h1>Hoashalarajh Rajendran</h1>
-            <p class="subtitle">Electrical Engineer | Social Robotics & Autonomous Systems</p>
+        <div class="dropdown">
+            <a href="#" class="inactive">Paper Summaries <i class="fa-solid fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <div class="dropdown-items">
+                    <a href="mercon.html"><i class="fa-solid fa-robot" style="margin-right: 8px;"></i> MERCon 2023: Proactive HRI</a>
+                    <a href="iciis.html"><i class="fa-solid fa-microphone-lines" style="margin-right: 8px;"></i> ICIIS 2023: Emotion Intensity</a>
+                </div>
+            </div>
         </div>
-    </header>-->
+    </nav>
 
     <section>
         <h2>Technical Projects</h2>
@@ -98,41 +145,40 @@
             <p class="tech-stack"><strong>Tools:</strong> Python, Algorithms, Hierarchical State Transition Network</p>
             <p> 
                 A short-term, extended task-oriented conversation system designed to gather user feedback about a lecture in a user-centered manner. The system leverages hierarchical state transitions to guide the conversation effectively.
-                <br>
+                <br><br>
                 <b>How this system is different and serves your purpose?</b>
                 <br>
                 A key advantage of this system is its adaptability to specific requirements. The pre-defined scripts utilized in the original implementation can be entirely replaced with your own custom scripts.
-                <br>
-                <b>Key features inclue:</b>
-                <ul>
-                    <li><b>State Management:</b>The architecture currently supports a maximum of four "superstates."</li>
-                    <li><b>Survey Structuring:</b>It is recommended to partition your survey questions into up to four main thematic blocks corresponding to these superstates.</li>
-                    <li><b>Scalability within Blocks:</b>While the number of superstates is capped at four, each block can handle an unlimited number of individual questions.</li>
+                <br><br>
+                <b>Key features include:</b>
+                <ul style="list-style-type: disc; margin-left: 20px;">
+                    <li><b>State Management:</b> The architecture currently supports a maximum of four "superstates."</li>
+                    <li><b>Survey Structuring:</b> It is recommended to partition your survey questions into up to four main thematic blocks.</li>
+                    <li><b>Scalability:</b> Each block can handle an unlimited number of individual questions.</li>
                 </ul>
             </p>
             <div class="project-gallery">
-              <img src="HSTN.png" alt="HSTN" class="project-img">
+              <img src="HSTN.png" alt="HSTN Diagram" class="project-img">
             </div>
         </div>
 
         <div class="project-card">
             <h3>Digital Twin of an Intelligent Production line with Adaptive Resource Handling</h3>
-            <p class="tech-stack"><strong>Tools:</strong> Discrete Event Simulation, Fuzzy inference system, Siemenrs Tecnomatix Plant Simulation</p>
+            <p class="tech-stack"><strong>Tools:</strong> Discrete Event Simulation, Fuzzy inference system, Siemens Tecnomatix Plant Simulation</p>
             <p>
-                An electric transformer production line system was modeled as a digital twin using actual data such as operation time per part and machine failure rates. Using the digital twin, multiple scenarios considering low and high demand for transformer production were simulated, and production line parameters were analyzed. Bottlenecks and other machine inefficiencies were identified by running multiple simulations using the digital twin. An algorithm using multiple fuzzy logic controllers was then implemented to monitor the performance of selected machines. These controllers were responsible for selecting and stopping the appropriate machine combinations.
+                An electric transformer production line system was modeled as a digital twin using actual data such as operation time per part and machine failure rates. Bottlenecks and inefficiencies were identified through multiple simulations. An algorithm using multiple fuzzy logic controllers was implemented to monitor performance and optimize machine combinations.
             </p>
             <b>System modeled in Siemens Tecnomatix Plant Simulation Software:</b>
-            <br>
-             <div class="project-gallery">
-              <img src="factory_cell.png" alt="HSTN" class="project-img">
+            <div class="project-gallery">
+              <img src="factory_cell.png" alt="Factory Model" class="project-img">
             </div>
             <br>
-            <b>Video Demonstration of Digital Twin of the Electric Transformer Production line:</b>
+            <b>Video Demonstration:</b>
             <br>
             <video controls>
                 <source src="digital_twin.mp4" type="video/mp4">
+                Your browser does not support the video tag.
             </video>
-
         </div>
         
     </section>
