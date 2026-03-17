@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Emotion Intensity Research Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background-color: #f8fafc; 
+            color: #0f172a;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-btn.active {
+            background-color: #4f46e5;
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.4);
+        }
+        
+        .arch-node {
+            transition: all 0.3s ease;
+        }
+        .arch-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Home Navigation Styling */
+        .home-nav a { 
+            text-decoration: none; 
+            transition: color 0.2s ease;
+        }
+        .home-nav a:hover { color: #4f46e5; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- GLOBAL HOME NAVIGATION -->
+    <nav class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-end items-center gap-6 mb-2 home-nav">
+        <a href="index.html" class="text-slate-500 hover:text-indigo-600 font-bold">Home</a>
+        <a href="projects.html" class="text-slate-500 hover:text-indigo-600 font-bold">Projects</a>
+        <a href="proofs.html" class="text-slate-500 hover:text-indigo-600 font-bold">Proofs</a>
+        <a href="#" class="text-indigo-600 font-bold border-b-2 border-indigo-600 pb-1 pointer-events-none">Paper Summary</a>
+    </nav>
+
+    <!-- STICKY HEADER & TABS -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-inner">
+                    <i class="fas fa-waveform">&#9834;</i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg leading-tight text-slate-800 uppercase tracking-tight">V-Emotion</h1>
+                    <p class="text-xs text-slate-500 font-medium tracking-wide">Intensity Analysis Dashboard</p>
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-center gap-2 bg-slate-100 p-1.5 rounded-full" id="nav-container">
+                <button data-target="overview" class="nav-btn active px-5 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-slate-900 transition-all">&#128269; Overview</button>
+                <button data-target="architecture" class="nav-btn px-5 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-slate-900 transition-all">&#128187; Audio Pipeline</button>
+                <button data-target="cognition" class="nav-btn px-5 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-slate-900 transition-all">&#129504; Empirical Proof</button>
+                <button data-target="results" class="nav-btn px-5 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-slate-900 transition-all">&#128202; Performance</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+        <!-- OVERVIEW SECTION -->
+        <section id="overview" class="tab-content active">
+            <div class="mb-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Voice Response Based Emotion Intensity Classification</h2>
+                <p class="text-lg text-slate-600 max-w-4xl leading-relaxed">
+                    This interactive analysis summarizes research by <strong>H. Rajendran et al.</strong> on enabling assistive robots to quantify human emotions. By transitioning from simple emotion detection to <strong>intensity classification</strong>, robots can respond with higher empathy and social alignment.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-center">
+                    <div class="inline-block bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 w-max">The Research Core</div>
+                    <h3 class="text-2xl font-bold mb-4">Quantifying the "Feeling" Domain</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        Emotions are notoriously difficult to represent in a quantified domain. This study proposes a multi-model ML approach that segments voice data into 1.2s windows to calculate emotional temperature. The system classifies intensity into four distinct levels, allowing a robot to distinguish between a "Mildly Sad" user and a "Severely Distressed" one.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-auto">
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                            <div class="text-3xl mb-2">&#127897;</div>
+                            <h4 class="font-bold text-sm text-slate-800">1.2s Windowing</h4>
+                            <p class="text-xs text-slate-500 mt-1">Optimal segment length for acoustic stability.</p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-2xl border border-indigo-100">
+                            <div class="text-3xl mb-2">&#9881;</div>
+                            <h4 class="font-bold text-sm text-indigo-900">26 Features</h4>
+                            <p class="text-xs text-indigo-700/70 mt-1">Statistical LLDs (Mean & Std Dev).</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                            <div class="text-3xl mb-2">&#128200;</div>
+                            <h4 class="font-bold text-sm text-slate-800">Plurality Logic</h4>
+                            <p class="text-xs text-slate-500 mt-1">Exponentially reducing failure probability.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 rounded-3xl p-8 shadow-xl text-white flex flex-col relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 text-[120px] opacity-10">&#127919;</div>
+                    <h3 class="text-xl font-bold mb-6 z-10">System Highlights</h3>
+                    <ul class="space-y-6 z-10 flex-grow">
+                        <li class="flex items-start gap-3">
+                            <div class="bg-emerald-500/20 text-emerald-400 rounded-full p-1 mt-0.5">&#10003;</div>
+                            <div>
+                                <h4 class="font-bold text-sm text-emerald-100">99.47% Accuracy</h4>
+                                <p class="text-xs text-slate-400 mt-1">Achieved via Random Forest on intensive voice datasets.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="bg-emerald-500/20 text-emerald-400 rounded-full p-1 mt-0.5">&#10003;</div>
+                            <div>
+                                <h4 class="font-bold text-sm text-emerald-100">Human Alignment</h4>
+                                <p class="text-xs text-slate-400 mt-1">Experimental study verified robot predictions vs human perception.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="bg-emerald-500/20 text-emerald-400 rounded-full p-1 mt-0.5">&#10003;</div>
+                            <div>
+                                <h4 class="font-bold text-sm text-emerald-100">Theoretical Bound</h4>
+                                <p class="text-xs text-slate-400 mt-1">Failure probability bounded by Hoeffding’s Inequality.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ARCHITECTURE SECTION -->
+        <section id="architecture" class="tab-content">
+            <div class="mb-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Audio Analysis Pipeline</h2>
+                <p class="text-lg text-slate-600 max-w-4xl leading-relaxed">
+                    The architecture transforms raw acoustic waveforms into quantified intensity labels. Click on each module to see the technical processing requirements for real-time assistive robotics.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 md:p-10 border border-slate-200 shadow-sm">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+                    
+                    <div class="w-full lg:w-1/3 space-y-4">
+                        <h3 class="text-center font-bold text-slate-400 uppercase tracking-widest text-xs mb-4 border-b pb-2">Pre-Processing</h3>
+                        <div class="arch-node bg-blue-50 border border-blue-200 p-4 rounded-2xl cursor-pointer" onclick="updateArchDetails('acquisition')">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="text-2xl">&#127897;</div>
+                                <h4 class="font-bold text-blue-900">Signal VAD</h4>
+                            </div>
+                            <div class="text-xs text-blue-700/80">Voice Activity Detection isolates speech from background noise.</div>
+                        </div>
+                        <div class="arch-node bg-purple-50 border border-purple-200 p-4 rounded-2xl cursor-pointer" onclick="updateArchDetails('windowing')">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="text-2xl">&#9986;</div>
+                                <h4 class="font-bold text-purple-900">1.2s Windowing</h4>
+                            </div>
+                            <div class="text-xs text-purple-700/80">Partitions audio into $N$ non-overlapping segments.</div>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:flex flex-col items-center justify-center text-slate-300">
+                        <div class="text-4xl">&#10142;</div>
+                        <div class="text-4xl">&#10142;</div>
+                    </div>
+
+                    <div class="w-full lg:w-1/3">
+                        <h3 class="text-center font-bold text-indigo-400 uppercase tracking-widest text-xs mb-4 border-b border-indigo-100 pb-2">Feature Engine</h3>
+                        <div class="bg-indigo-600 p-6 rounded-3xl shadow-lg text-white arch-node cursor-pointer" onclick="updateArchDetails('extraction')">
+                            <div class="text-center mb-4 text-4xl">&#128202;</div>
+                            <h4 class="text-center font-bold text-lg mb-4">Statistical Extractor</h4>
+                            <div class="bg-indigo-800/50 p-3 rounded-xl text-xs space-y-2 mb-4">
+                                <p class="flex justify-between"><span>Frames:</span> <span class="font-bold">40 per segment</span></p>
+                                <p class="flex justify-between"><span>Vector $V_i$:</span> <span class="font-bold">26 Dimensions</span></p>
+                            </div>
+                            <div class="bg-white/10 p-3 rounded-xl text-xs text-center border border-white/20">
+                                MFCCs, Pitch, Intensity, Jitter, Shimmer
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:flex flex-col items-center justify-center text-slate-300">
+                        <div class="text-4xl">&#10142;</div>
+                    </div>
+
+                    <div class="w-full lg:w-1/3 space-y-4">
+                        <h3 class="text-center font-bold text-emerald-400 uppercase tracking-widest text-xs mb-4 border-b border-emerald-100 pb-2">Classifier</h3>
+                        <div class="bg-emerald-50 border border-emerald-200 p-6 rounded-3xl arch-node cursor-pointer" onclick="updateArchDetails('plurality')">
+                            <div class="text-center mb-4 text-4xl">&#128509;</div>
+                            <h4 class="text-center font-bold text-emerald-900 mb-2">Plurality Decision</h4>
+                            <p class="text-center text-xs text-emerald-700/80 leading-relaxed">
+                                Aggregates segment-wise labels to determine final response intensity.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-10 p-6 bg-slate-800 rounded-2xl text-white min-h-[120px] flex items-center">
+                    <div id="arch-details-content">
+                        <p class="text-sm text-slate-300"><span class="text-indigo-400 font-bold uppercase text-xs tracking-widest mr-2">Interactive:</span> Click a node above to explore the pipeline specifications.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COGNITIVE/THEORETICAL SECTION -->
+        <section id="cognition" class="tab-content">
+            <div class="mb-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">The Empirical Method & Appendix Proof</h2>
+                <p class="text-lg text-slate-600 max-w-4xl leading-relaxed">
+                    Why is 1.2s windowing and plurality voting effective? The research provides a theoretical guarantee that the classification error decreases <strong>exponentially</strong> with signal length.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-4 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-sm">1</span>
+                        Statistical Feature Vector
+                    </h3>
+                    <p class="text-sm text-slate-600 mb-6">Each 1.2s segment $i$ is transformed into a vector $V_i$ representing the temporal mean ($\mu$) and standard deviation ($\sigma$) of 13 low-level descriptors.</p>
+                    
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 font-mono text-sm space-y-3">
+                        <p class="text-indigo-600">$V_i = [\mu(X_i), \sigma(X_i)]$</p>
+                        <hr>
+                        <p class="text-slate-500 text-xs">// 26-Dimensional Feature Space</p>
+                        <ul class="text-xs space-y-1">
+                            <li>• Pitch (F0) & Fundamental Frequency</li>
+                            <li>• Shimmer (Amplitude variation)</li>
+                            <li>• Jitter (Frequency variation)</li>
+                            <li>• Harmonic-to-Noise Ratio (HNR)</li>
+                            <li>• MFCCs (1-13)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-900 p-8 rounded-3xl text-white shadow-lg relative overflow-hidden flex flex-col">
+                    <h3 class="text-2xl font-bold mb-6 border-b border-indigo-700 pb-4 flex items-center gap-3 relative z-10">
+                        <span class="w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center text-sm">2</span>
+                        Theoretical Guarantee
+                    </h3>
+                    
+                    <p class="text-indigo-200 text-sm leading-relaxed mb-6 relative z-10">
+                        Based on <strong>Hoeffding's Inequality</strong>, the plurality decision $\hat{Y}$ for a response with $N$ segments satisfies a failure bound:
+                    </p>
+
+                    <div class="bg-black/30 p-6 rounded-2xl border border-white/10 font-mono text-xs mb-8 flex-grow">
+                        <div class="text-emerald-400 mb-4">Pr(Failure) ≤ (C-1) · exp(-Nμ²/2)</div>
+                        <div class="space-y-2 text-indigo-300">
+                            <p>• <strong>C:</strong> Number of classes (4)</p>
+                            <p>• <strong>N:</strong> Segments of 1.2s duration</p>
+                            <p>• <strong>μ:</strong> Classifier confidence margin</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-indigo-300 relative z-10">
+                        <span class="bg-indigo-500/50 px-3 py-1 rounded-full text-white border border-indigo-400/50">Exponential Convergence</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESULTS SECTION -->
+        <section id="results" class="tab-content">
+            <div class="mb-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Experimental Results</h2>
+                <p class="text-lg text-slate-600 max-w-4xl leading-relaxed">
+                    Performance evaluation across four machine learning models. Random Forest emerged as the superior algorithm for handling the 26-dimensional acoustic feature space.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-8">
+                <div class="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Model Accuracy Comparison</h3>
+                    <div class="chart-container">
+                        <canvas id="accuracyChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Human Alignment Study</h3>
+                    <p class="text-sm text-slate-600 mb-6">Robot predictions were compared against 15 human participants (ages 20-30). Results showed significant alignment in intensity perception.</p>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-sm font-bold">
+                            <span>Random Forest (System)</span>
+                            <span class="text-emerald-600">99.47%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-2 rounded-full"><div class="bg-emerald-500 h-full rounded-full" style="width: 99.4%"></div></div>
+                        
+                        <div class="flex justify-between items-center text-sm font-bold mt-4">
+                            <span>Human Peer Group Alignment</span>
+                            <span class="text-indigo-600">91.20%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-2 rounded-full"><div class="bg-indigo-500 h-full rounded-full" style="width: 91.2%"></div></div>
+                    </div>
+                    <div class="mt-8 p-4 bg-amber-50 rounded-2xl border border-amber-100 text-amber-800 text-xs italic">
+                        "The proposed system performs significantly better on test data... revealing significant alignment with data extracted from human participants."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-sm text-slate-500">
+                <p class="font-bold text-slate-700 mb-1">ICIIS 2023 Research Insight</p>
+                <p>Voice-Based Emotion Intensity Classification for Assistive Robots.</p>
+            </div>
+            <div class="text-xs font-bold tracking-widest uppercase text-slate-400">
+                Data Science & HRI Research Dashboard
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data Mapping
+        const data = {
+            accuracy: {
+                labels: ['Random Forest', 'SVM', 'KNN', 'MLP'],
+                scores: [99.47, 98.7, 97.2, 95.8]
+            },
+            arch: {
+                acquisition: {
+                    title: "Signal Acquisition & VAD",
+                    desc: "Digitized at 44.1 kHz. Voice Activity Detection (VAD) handles the 'silence' challenge, ensuring the classifier only processes active phonetic segments."
+                },
+                windowing: {
+                    title: "1.2s Windowing Logic",
+                    desc: "Audio is segmented into N parts. 1.2s was selected based on the average duration of human emotional phonetic expressions to ensure statistical stability."
+                },
+                extraction: {
+                    title: "Statistical Extraction",
+                    desc: "Calculates temporal mean and standard deviation across 40 frames per segment. This results in a robust 26-feature vector V_i."
+                },
+                plurality: {
+                    title: "Plurality Voting",
+                    desc: "Instead of relying on one segment, the system takes the majority vote from all N segments of a response. The Appendix proves this lowers error exponentially."
+                }
+            }
+        };
+
+        // Tab Switching
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.dataset.target;
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(target).classList.add('active');
+
+                if (target === 'results') initCharts();
+            });
+        });
+
+        // Architecture Interaction
+        window.updateArchDetails = (key) => {
+            const node = data.arch[key];
+            const container = document.getElementById('arch-details-content');
+            container.style.opacity = '0';
+            setTimeout(() => {
+                container.innerHTML = `
+                    <div class="flex items-center gap-3 mb-2 text-indigo-400">
+                        <span class="font-bold tracking-widest uppercase text-xs">${node.title}</span>
+                    </div>
+                    <p class="text-sm text-slate-100 leading-relaxed">${node.desc}</p>
+                `;
+                container.style.opacity = '1';
+            }, 150);
+        };
+
+        // Charts
+        let chartInstance = null;
+        function initCharts() {
+            if (chartInstance) return;
+            const ctx = document.getElementById('accuracyChart').getContext('2d');
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.accuracy.labels,
+                    datasets: [{
+                        label: 'Accuracy %',
+                        data: data.accuracy.scores,
+                        backgroundColor: ['#4f46e5', '#818cf8', '#a5b4fc', '#c7d2fe'],
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { min: 90, max: 100, grid: { display: false } },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
