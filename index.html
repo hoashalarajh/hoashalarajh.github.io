@@ -42,7 +42,7 @@
         .header-text p.contact-info a { color: #2980b9; text-decoration: none; }
         .header-text p.contact-info a:hover { text-decoration: underline; }
         
-        h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 5px; margin-top: 30px; }
+        h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 5px; margin-top: 30 -px; }
         ul { list-style-type: none; padding: 0; }
         li { margin-bottom: 10px; background: #fff; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
 
@@ -52,19 +52,20 @@
         /* Project Image Gallery Styling */
         .project-gallery {
             display: flex;
-            gap: 15px; /* Space between images */
-            margin-top: 15px; /* Space above the images */
-            flex-wrap: wrap; /* Allows images to stack on smaller screens */
+            gap: 15px; 
+            margin-top: 15px; 
+            flex-wrap: wrap; 
         }
         
         .project-img {
-            flex: 1 1 45%; /* Makes images take up roughly half the space each */
+            flex: 1 1 45%; 
             max-width: 100%;
             height: auto;
-            border-radius: 5px; /* Slight rounded corners */
-            border: 1px solid #ddd; /* Subtle border */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Soft shadow */
+            border-radius: 5px; 
+            border: 1px solid #ddd; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
         }
+
         /* Navigation Styling */
         nav { 
             text-align: right; 
@@ -76,54 +77,100 @@
             margin-right: 20px; 
             text-decoration: none; 
             font-weight: bold; 
+            display: inline-block;
         }
         nav a:last-child {
-            margin-right: 0; /* Removes the margin from the very last link */
+            margin-right: 0; 
         }
         nav a.active { color: #2c3e50; }
         nav a.inactive { color: #2980b9; }
         nav a:hover { text-decoration: underline; }
 
-        /* Add this to your existing .header-text to push the video to the right */
+        /* Dropdown Styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #fff;
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+            z-index: 1000;
+            border-radius: 5px;
+            text-align: left;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: #2980b9 !important;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            margin-right: 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content a:last-child { border-bottom: none; }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            text-decoration: none !important;
+            color: #2c3e50 !important;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown .fa-chevron-down {
+            font-size: 0.7em;
+            margin-left: 5px;
+        }
+
         .header-text { 
             flex-grow: 1; 
         }
         
-        /* New styling for the video container */
         .header-video {
-            width: 450px; /* You can adjust this width based on your preference */
+            width: 450px; 
             height: 200px; 
-            flex-shrink: 0; /* Prevents the video from being squeezed too small */
-            border-radius: 8px; /* Gives it nice rounded corners */
-            overflow: hidden; /* Ensures the video respects the rounded corners */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Adds a subtle shadow */
+            flex-shrink: 0; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
         }
 
-        /* Makes sure the video scales nicely inside the container */
         .header-video video {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures it fills the box without stretching weirdly */
+            object-fit: cover; 
         }
         
     </style>
-    
 </head>
-    <!-- <nav style="text-align: right; margin-bottom: 30px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
-        <a href="index.html" style="margin-right: 20px; text-decoration: none; font-weight: bold; color: #2c3e50;">Home</a>
-        <a href="projects.html" style="text-decoration: none; font-weight: bold; color: #2980b9;">Projects</a>
-        <a href="proofs.html" style="text-decoration: none; font-weight: bold; color: #2980b9;">Proofs</a>
-    </nav>-->
+<body>
 
     <nav>
         <a href="index.html" class="active">Home</a>
         <a href="projects.html" class="inactive">Projects</a>
         <a href="proofs.html" class="inactive">Proofs</a>
-        <a href="mercon.html" class="inactive">Paper Summary</a>
+        <!-- Expandable Dropdown -->
+        <div class="dropdown">
+            <a href="#" class="inactive">Paper Summaries <i class="fa-solid fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <a href="mercon.html"><i class="fa-solid fa-robot" style="margin-right: 8px;"></i> MERCon 2023: Proactive HRI</a>
+                <a href="iciis.html"><i class="fa-solid fa-microphone-lines" style="margin-right: 8px;"></i> ICIIS 2023: Emotion Intensity</a>
+            </div>
+        </div>
     </nav>
     
-<body>
-
     <header>
         <img src="Hoashalarajh.jpg" alt="Hoashalarajh Rajendran" class="profile-pic">
         
@@ -131,10 +178,10 @@
             <h1>Hoashalarajh Rajendran</h1>
             <p class="subtitle">Electrical Engineer | Human-robot Interaction Researcher</p>
             <p class="contact-info">
-                <a href="mailto:your.email@example.com">
+                <a href="mailto:rajhoashal@gmail.com">
                     <i class="fa-solid fa-envelope" aria-hidden="true"></i>rajhoashal@gmail.com
                 </a> 
-                <a href="tel:+94700000000">
+                <a href="tel:+94779224564">
                     <i class="fa-solid fa-phone" aria-hidden="true"></i>+94 77 922 4564
                 </a>
             </p>
@@ -178,7 +225,6 @@
                     <img src="ROS2_image_analysis.png" alt="pomdp_analysis" class="project-img">
                 </div>
             </li>
-           
         </ul>
     </section>
 
