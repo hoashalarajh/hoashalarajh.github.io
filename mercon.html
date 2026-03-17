@@ -6,23 +6,15 @@
     <title>Proactive HRI Interaction Manager Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Chosen Palette: Warm Neutrals with Indigo and Emerald Accents -->
-    <!-- Application Structure Plan: The SPA uses a tabbed dashboard structure to break down the complex academic paper into digestible, thematic sections (Overview, Architecture, Cognitive Engine, Results). This prevents cognitive overload and allows non-linear exploration. The layout prioritizes visual hierarchies, using grids for component breakdowns and responsive chart containers for data validation. -->
-    <!-- Visualization & Content Choices: 
-         1. Architecture Diagram: HTML/CSS Flexbox -> Goal: Show system flow -> Justification: Better than static images, allows CSS transitions on hover without using SVGs.
-         2. Accuracy Metrics: Chart.js Bar Chart -> Goal: Compare module performance -> Justification: Standard, readable format for percentage comparisons.
-         3. Adaptability Curve: Chart.js Line Chart -> Goal: Show learning over time -> Justification: Best for time-series/progression data. 
-         4. Decision Tree Elements: HTML/Tailwind Grid -> Goal: List inputs -> Justification: Clean, icon-based text presentation. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
         
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; 
-            color: #0f172a;
+            font-family: 'Segoe UI', 'Inter', sans-serif;
+            background-color: #f9f9f9; 
+            color: #333;
         }
 
         .chart-container {
@@ -69,31 +61,53 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
-        /* Integrating Portfolio Typography & Global Styles */
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #f9f9f9; 
-            color: #333;
+        /* Dropdown Styling - Fixed Hover Area Bridge */
+        .dropdown {
+            position: relative;
+            display: inline-block;
         }
 
-        /* Portfolio Home Navigation */
-        .home-nav { 
-            max-width: 850px;
-            margin: 20px auto 30px auto;
-            text-align: right; 
-            padding-bottom: 15px; 
-            border-bottom: 1px solid #e2e8f0; 
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: transparent; 
+            min-width: 260px;
+            z-index: 1000;
+            padding-top: 15px; 
+            margin-top: -5px; 
+            text-align: left;
         }
-        .home-nav a { 
-            text-decoration: none; 
-            font-weight: bold; 
-            color: #2980b9;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-        }
-        .home-nav a:hover { color: #2c3e50; text-decoration: underline; }
 
-        
+        .dropdown-items {
+            background-color: #fff;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .dropdown-items a {
+            color: #4f46e5 !important;
+            padding: 12px 16px;
+            text-decoration: none !important;
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-bottom: 1px solid #f1f5f9;
+            transition: all 0.2s;
+        }
+
+        .dropdown-items a:last-child { border-bottom: none; }
+
+        .dropdown-items a:hover {
+            background-color: #f8fafc;
+            color: #312e81 !important;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
@@ -102,9 +116,26 @@
         <a href="index.html" class="text-slate-500 hover:text-indigo-600 font-bold transition-colors">Home</a>
         <a href="projects.html" class="text-slate-500 hover:text-indigo-600 font-bold transition-colors">Projects</a>
         <a href="proofs.html" class="text-slate-500 hover:text-indigo-600 font-bold transition-colors">Proofs</a>
-        <a href="mercon.html" class="text-indigo-600 font-bold border-b-2 border-indigo-600 pb-1 pointer-events-none">Paper Summary</a>
+        
+        <!-- Paper Summary Dropdown -->
+        <div class="dropdown">
+            <a href="#" class="text-indigo-600 font-bold border-b-2 border-indigo-600 pb-1 flex items-center gap-1 cursor-default">
+                Paper Summaries <i class="fa-solid fa-chevron-down text-[10px]"></i>
+            </a>
+            <div class="dropdown-content">
+                <div class="dropdown-items">
+                    <a href="mercon.html" class="bg-indigo-50/50 border-r-4 border-indigo-600">
+                        <i class="fa-solid fa-robot mr-2"></i> MERCon 2023: Proactive HRI
+                    </a>
+                    <a href="iciis.html">
+                        <i class="fa-solid fa-microphone-lines mr-2"></i> ICIIS 2023: Emotion Intensity
+                    </a>
+                </div>
+            </div>
+        </div>
     </nav>
 
+    <!-- STICKY HEADER & TABS -->
     <nav class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
@@ -484,7 +515,7 @@
             },
             adaptability: {
                 labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4'],
-                data: [2.8, 3.8, 4.2, 4.7], // Extrapolated from the Box Plot description in the paper
+                data: [2.8, 3.8, 4.2, 4.7], 
             },
             archDetails: {
                 vision: {
