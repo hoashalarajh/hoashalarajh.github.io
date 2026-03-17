@@ -305,17 +305,19 @@
                         <span class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-sm">1</span>
                         Statistical Feature Vector
                     </h3>
-                    <p class="text-sm text-slate-600 mb-6">Each 1.2s segment <b>i</b> is transformed into a vector <b>V<sub>i</sub></b> representing the temporal mean (<b>&mu</b>) and standard deviation (<b>&sigma</b>) of 13 low-level descriptors.</p>
+                    <p class="text-sm text-slate-600 mb-6">
+                      Each 1.2s segment <b>i</b> is transformed into a vector <b>V<sub>i</sub></b> representing the temporal mean (<b>&mu;</b>) and standard deviation (<b>&sigma;</b>) of 13 low-level descriptors.
+                    </p>
                     
                     <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 font-mono text-sm space-y-3">
-                        <p class="text-indigo-600">$V_i = [\mu(X_i), \sigma(X_i)]$</p>
+                        <p class="text-indigo-600"><b>V<sub>i</sub></b> = [&mu(X<sub>i</sub>), &sigma(X<sub>i</sub>)]</p>
                         <hr>
-                        <p class="text-slate-500 text-xs">// 26-Dimensional Feature Space</p>
+                        <p class="text-slate-500 text-xs">// 17-Dimensional Feature Space</p>
                         <ul class="text-xs space-y-1">
-                            <li>• Pitch (F0) & Fundamental Frequency</li>
-                            <li>• Shimmer (Amplitude variation)</li>
-                            <li>• Jitter (Frequency variation)</li>
-                            <li>• Harmonic-to-Noise Ratio (HNR)</li>
+                            <li>• Amplitude</li>
+                            <li>• RMS Energy</li>
+                            <li>• Zero-crossing rate</li>
+                            <li>• Fundamental frequency</li>
                             <li>• MFCCs (1-13)</li>
                         </ul>
                     </div>
@@ -328,7 +330,9 @@
                     </h3>
                     
                     <p class="text-indigo-200 text-sm leading-relaxed mb-6 relative z-10">
-                        Based on <strong>Hoeffding's Inequality</strong>, the plurality decision $\hat{Y}$ for a response with $N$ segments satisfies a failure bound:
+                        <p class="text-sm text-slate-600 mb-6">
+                          Based on <strong>Hoeffding's Inequality</strong>, the plurality decision <i>&Ycirc;</i> for a response with <i>N</i> segments satisfies a failure bound:
+                        </p>
                     </p>
 
                     <div class="bg-black/30 p-6 rounded-2xl border border-white/10 font-mono text-xs mb-8 flex-grow">
@@ -376,9 +380,9 @@
                         
                         <div class="flex justify-between items-center text-sm font-bold mt-4">
                             <span>Human Peer Group Alignment</span>
-                            <span class="text-indigo-600">91.20%</span>
+                            <span class="text-indigo-600">78.86%</span>
                         </div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full"><div class="bg-indigo-500 h-full rounded-full" style="width: 91.2%"></div></div>
+                        <div class="w-full bg-slate-100 h-2 rounded-full"><div class="bg-indigo-500 h-full rounded-full" style="width: 78.9%"></div></div>
                     </div>
                     <div class="mt-8 p-4 bg-amber-50 rounded-2xl border border-amber-100 text-amber-800 text-xs italic">
                         "The proposed system performs significantly better on test data... revealing significant alignment with data extracted from human participants."
@@ -392,7 +396,7 @@
     <footer class="bg-white border-t border-slate-200 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="text-sm text-slate-500">
-                <p class="font-bold text-slate-700 mb-1">ICIIS 2023 Research Insight</p>
+                <p class="font-bold text-slate-700 mb-1">IEEE ICIIS 2023</p>
                 <p>Voice-Based Emotion Intensity Classification for Assistive Robots.</p>
             </div>
             <div class="text-xs font-bold tracking-widest uppercase text-slate-400">
