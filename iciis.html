@@ -156,7 +156,7 @@
             <div class="mb-8">
                 <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Voice Response Based Emotion Intensity Classification</h2>
                 <p class="text-lg text-slate-600 max-w-4xl leading-relaxed">
-                    This interactive analysis summarizes research by <strong>H. Rajendran et al.</strong> on enabling assistive robots to quantify human emotions. By transitioning from simple emotion detection to <strong>intensity classification</strong>, robots can respond with higher empathy and social alignment.
+                    This interactive dashboard summarizes research by <strong>Hoashalarajh Rajendran et al.</strong> on enabling assistive robots to quantify human emotions. By transitioning from simple emotion detection to <strong>intensity classification</strong>, robots can respond with higher empathy and social alignment.
                 </p>
             </div>
 
@@ -165,7 +165,7 @@
                     <div class="inline-block bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 w-max">The Core Problem</div>
                     <h3 class="text-2xl font-bold mb-4">Classifying Emotion Intensities</h3>
                     <p class="text-slate-600 mb-6 leading-relaxed">
-                        Emotions are notoriously difficult to represent in a quantified domain. This study proposes a multi-model ML approach that segments voice data into 1.2s windows to calculate emotional temperature. The system classifies intensity into four distinct levels, allowing a robot to distinguish between a "Mildly Sad" user and a "Severely Distressed" one.
+                        Emotions are widely classified from images and speech signals and even from multi-modalities. However, intensities of those emotions were studied only as a continuous scale such as emotion temperature. It is really hard to understand rationale behind such continuous scale, on the other hand we have a rapidly growing data in the social media and internet of speech signals with a variety of emotional intensities. We classified the emotion intensities only from speech signals into four different categories such as Neutral, Onset, Offset and Apex by utilizing machine learning algorithms. The system classifies intensity into four distinct levels, allowing a robot to distinguish between a "Mildly Sad" user and a "Severely Distressed" one.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-auto">
                         <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
@@ -175,8 +175,8 @@
                         </div>
                         <div class="bg-indigo-50 p-4 rounded-2xl border border-indigo-100">
                             <div class="text-3xl mb-2">&#9881;</div>
-                            <h4 class="font-bold text-sm text-indigo-900">26 Features</h4>
-                            <p class="text-xs text-indigo-700/70 mt-1">Statistical LLDs (Mean & Std Dev).</p>
+                            <h4 class="font-bold text-sm text-indigo-900">17 Features</h4>
+                            <p class="text-xs text-indigo-700/70 mt-1">Statistical features (Mean & Std Dev).</p>
                         </div>
                         <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
                             <div class="text-3xl mb-2">&#128200;</div>
@@ -242,7 +242,7 @@
                                 <div class="text-2xl">&#9986;</div>
                                 <h4 class="font-bold text-purple-900">1.2s Windowing</h4>
                             </div>
-                            <div class="text-xs text-purple-700/80">Partitions audio into $N$ non-overlapping segments.</div>
+                            <div class="text-xs text-purple-700/80">Partitions audio into <b>N</b> non-overlapping segments.</div>
                         </div>
                     </div>
 
@@ -258,10 +258,10 @@
                             <h4 class="text-center font-bold text-lg mb-4">Statistical Extractor</h4>
                             <div class="bg-indigo-800/50 p-3 rounded-xl text-xs space-y-2 mb-4">
                                 <p class="flex justify-between"><span>Frames:</span> <span class="font-bold">40 per segment</span></p>
-                                <p class="flex justify-between"><span>Vector $V_i$:</span> <span class="font-bold">26 Dimensions</span></p>
+                                <p class="flex justify-between"><span>Vector <b>V<sub>i</sub></b>:</span> <span class="font-bold">17 Dimensions</span></p>
                             </div>
                             <div class="bg-white/10 p-3 rounded-xl text-xs text-center border border-white/20">
-                                MFCCs, Pitch, Intensity, Jitter, Shimmer
+                                MFCCs, Amplitude, RMS Energy, Zero-corssing rate, Fundamental frequency
                             </div>
                         </div>
                     </div>
@@ -305,7 +305,7 @@
                         <span class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-sm">1</span>
                         Statistical Feature Vector
                     </h3>
-                    <p class="text-sm text-slate-600 mb-6">Each 1.2s segment $i$ is transformed into a vector $V_i$ representing the temporal mean ($\mu$) and standard deviation ($\sigma$) of 13 low-level descriptors.</p>
+                    <p class="text-sm text-slate-600 mb-6">Each 1.2s segment <b>i</b> is transformed into a vector <b>V<sub>i</sub></b> representing the temporal mean (<b>&mu</b>) and standard deviation (<b>&sigma</b>) of 13 low-level descriptors.</p>
                     
                     <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 font-mono text-sm space-y-3">
                         <p class="text-indigo-600">$V_i = [\mu(X_i), \sigma(X_i)]$</p>
