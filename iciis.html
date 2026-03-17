@@ -67,17 +67,34 @@
         }
         .home-nav a:hover { color: #4f46e5; }
         
-        /* Dropdown Animation */
-        .dropdown-menu {
+        /* Dropdown Fix: Bridging the Gap */
+        .dropdown-container {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            width: 240px;
+            padding-top: 15px; /* The bridge */
+            margin-top: -5px;  /* Slight overlap */
             opacity: 0;
             transform: translateY(10px);
             pointer-events: none;
             transition: all 0.2s ease-in-out;
+            z-index: 100;
         }
-        .group:hover .dropdown-menu {
+        
+        .group:hover .dropdown-container {
             opacity: 1;
             transform: translateY(0);
             pointer-events: auto;
+        }
+
+        .dropdown-items {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            padding: 0.75rem 0;
         }
     </style>
 </head>
@@ -94,16 +111,19 @@
             <button class="text-indigo-600 font-bold border-b-2 border-indigo-600 pb-1 flex items-center gap-1 cursor-default">
                 Paper Summaries <span class="text-[10px] ml-1">&#9660;</span>
             </button>
-            <div class="dropdown-menu absolute right-0 mt-2 w-56 bg-white border border-slate-200 rounded-2xl shadow-xl py-3 z-[100]">
-                <div class="px-4 py-1 mb-2">
-                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Select Research</p>
+            <!-- Dropdown Container (The Bridge) -->
+            <div class="dropdown-container">
+                <div class="dropdown-items">
+                    <div class="px-4 py-1 mb-2">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Select Research</p>
+                    </div>
+                    <a href="mercon.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 transition-colors font-semibold">
+                        <span class="text-lg">🤖</span> MERCon 2023: Proactive HRI
+                    </a>
+                    <a href="iciis.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-indigo-600 bg-indigo-50/50 border-r-4 border-indigo-600 transition-colors font-bold">
+                        <span class="text-lg">🎙️</span> ICIIS 2023: Emotion Class
+                    </a>
                 </div>
-                <a href="mercon.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 transition-colors font-semibold">
-                    <span class="text-lg">🤖</span> MERCon 2023: Proactive HRI
-                </a>
-                <a href="index.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-indigo-600 bg-indigo-50/50 border-r-4 border-indigo-600 transition-colors font-bold">
-                    <span class="text-lg">🎙️</span> ICIIS 2023: Emotion Class
-                </a>
             </div>
         </div>
     </nav>
