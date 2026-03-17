@@ -42,7 +42,7 @@
         .header-text p.contact-info a { color: #2980b9; text-decoration: none; }
         .header-text p.contact-info a:hover { text-decoration: underline; }
         
-        h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 5px; margin-top: 30 -px; }
+        h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 5px; margin-top: 30px; }
         ul { list-style-type: none; padding: 0; }
         li { margin-bottom: 10px; background: #fff; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
 
@@ -86,7 +86,7 @@
         nav a.inactive { color: #2980b9; }
         nav a:hover { text-decoration: underline; }
 
-        /* Dropdown Styling */
+        /* Dropdown Styling - Fixed Hover Area */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -96,13 +96,18 @@
             display: none;
             position: absolute;
             right: 0;
-            background-color: #fff;
+            background-color: transparent; /* Transparent parent to bridge the gap */
             min-width: 250px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
             z-index: 1000;
-            border-radius: 5px;
+            padding-top: 15px; /* Creates a bridge between the trigger and the menu */
+            margin-top: -5px; /* Overlaps slightly with trigger to ensure no gap */
             text-align: left;
-            margin-top: 5px;
+        }
+
+        .dropdown-items {
+            background-color: #fff;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+            border-radius: 5px;
             border: 1px solid #ddd;
             overflow: hidden;
         }
@@ -165,8 +170,10 @@
         <div class="dropdown">
             <a href="#" class="inactive">Paper Summaries <i class="fa-solid fa-chevron-down"></i></a>
             <div class="dropdown-content">
-                <a href="mercon.html"><i class="fa-solid fa-robot" style="margin-right: 8px;"></i> MERCon 2023: Proactive HRI</a>
-                <a href="iciis.html"><i class="fa-solid fa-microphone-lines" style="margin-right: 8px;"></i> ICIIS 2023: Emotion Intensity</a>
+                <div class="dropdown-items">
+                    <a href="mercon.html"><i class="fa-solid fa-robot" style="margin-right: 8px;"></i> MERCon 2023: Proactive HRI</a>
+                    <a href="iciis.html"><i class="fa-solid fa-microphone-lines" style="margin-right: 8px;"></i> ICIIS 2023: Emotion Intensity</a>
+                </div>
             </div>
         </div>
     </nav>
