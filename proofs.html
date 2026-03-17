@@ -3,47 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | Hoashalarajh Rajendran</title>
+    <title>Proofs | Hoashalarajh Rajendran</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Same base styling as your home page */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 40px auto; max-width: 1280px; padding: 0 20px; color: #333; background-color: #f9f9f9; }
-        header { display: flex; align-items: center; gap: 30px; margin-bottom: 20px; }
-        .profile-pic { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #2c3e50; flex-shrink: 0; }
-        .header-text h1 { color: #2c3e50; margin: 0 0 5px 0; font-size: 1.8em; }
-        .header-text p.subtitle { color: #555; font-style: italic; margin: 0; }
-        .pdf-container { width: 100%; height: 800px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        
-        /* Navigation Styling */
-        nav { text-align: center; margin-bottom: 30px; padding-bottom: 10px; border-bottom: 1px solid #ddd; }
-        nav a { margin-right: 20px; text-decoration: none; font-weight: bold; }
-        nav a.active { color: #2c3e50; }
-        nav a.inactive { color: #2980b9; }
-        nav a:hover { text-decoration: underline; }
-
-        /* Project specific styling */
-        h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 5px; margin-top: 30px; }
-        .project-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        .project-card h3 { margin-top: 0; color: #2980b9; }
-        .tech-stack { font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 10px; }
-
-        /* Project Image Gallery Styling */
-        .project-gallery {
-            display: flex;
-            gap: 15px; /* Space between images */
-            margin-top: 15px; /* Space above the images */
-            flex-wrap: wrap; /* Allows images to stack on smaller screens */
+        /* Base styling consistent with portfolio */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            margin: 40px auto; 
+            max-width: 1280px; 
+            padding: 0 20px; 
+            color: #333; 
+            background-color: #f9f9f9; 
         }
         
-        .project-img {
-            flex: 1 1 45%; /* Makes images take up roughly half the space each */
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px; /* Slight rounded corners */
-            border: 1px solid #ddd; /* Subtle border */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Soft shadow */
+        header { 
+            margin-bottom: 20px; 
+        }
+        
+        h1 { 
+            color: #2c3e50; 
+            margin: 0; 
+            font-size: 1.8em; 
+            border-bottom: 2px solid #2c3e50; 
+            padding-bottom: 10px;
         }
 
+        .pdf-container { 
+            width: 100%; 
+            height: 800px; 
+            border: 1px solid #ccc; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            margin-top: 20px;
+        }
+        
         /* Navigation Styling */
         nav { 
             text-align: right; 
@@ -55,46 +49,98 @@
             margin-right: 20px; 
             text-decoration: none; 
             font-weight: bold; 
+            display: inline-block;
         }
         nav a:last-child {
-            margin-right: 0; /* Removes the margin from the very last link */
+            margin-right: 0; 
         }
         nav a.active { color: #2c3e50; }
         nav a.inactive { color: #2980b9; }
         nav a:hover { text-decoration: underline; }
+
+        /* Dropdown Styling - Fixed Hover Area Bridge */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: transparent; 
+            min-width: 250px;
+            z-index: 1000;
+            padding-top: 15px; 
+            margin-top: -5px; 
+            text-align: left;
+        }
+
+        .dropdown-items {
+            background-color: #fff;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: #2980b9 !important;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            margin-right: 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content a:last-child { border-bottom: none; }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            text-decoration: none !important;
+            color: #2c3e50 !important;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown .fa-chevron-down {
+            font-size: 0.7em;
+            margin-left: 5px;
+        }
         
     </style>
 </head>
+<body>
 
     <nav>
         <a href="index.html" class="inactive">Home</a>
         <a href="projects.html" class="inactive">Projects</a>
         <a href="proofs.html" class="active">Proofs</a>
-        <a href="mercon.html" class="inactive">Paper Summary</a>
-    </nav>
-
-    
-<body>
-
-   <!-- <header>
-        <img src="Hoashalarajh.jpg" alt="Hoashalarajh Rajendran" class="profile-pic">
-        <div class="header-text">
-            <h1>Hoashalarajh Rajendran</h1>
-            <p class="subtitle">Electrical Engineer | Social Robotics & Autonomous Systems</p>
+        <!-- Expandable Dropdown -->
+        <div class="dropdown">
+            <a href="#" class="inactive">Paper Summaries <i class="fa-solid fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <div class="dropdown-items">
+                    <a href="mercon.html"><i class="fa-solid fa-robot" style="margin-right: 8px;"></i> MERCon 2023: Proactive HRI</a>
+                    <a href="iciis.html"><i class="fa-solid fa-microphone-lines" style="margin-right: 8px;"></i> ICIIS 2023: Emotion Intensity</a>
+                </div>
+            </div>
         </div>
-    </header>-->
-
+    </nav>
+    
     <section>
+        <header>
+            <h1>Formal proof of theoretical guarantee of an empirical method</h1>
+        </header>
 
-    <header>
-        <h1>Formal proof of theoretical guarantee of an empirical method</h1>
-        <br>
-    </header>
-
-    <section>
-        <iframe class="pdf-container" src="appendix on theoretical guarentee for the empirical method.pdf" title="Document Proofs">
-            <p>Your browser does not support viewing PDFs directly. <a href="your-document.pdf">Click here to download the PDF</a>.</p>
-        </iframe>
+        <section>
+            <iframe class="pdf-container" src="appendix on theoretical guarentee for the empirical method.pdf" title="Document Proofs">
+                <p>Your browser does not support viewing PDFs directly. <a href="appendix on theoretical guarentee for the empirical method.pdf">Click here to download the PDF</a>.</p>
+            </iframe>
+        </section>
     </section>
 
     <footer style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd;">
