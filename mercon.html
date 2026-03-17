@@ -68,9 +68,39 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
+
+        /* Integrating Portfolio Typography & Global Styles */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f9f9f9; 
+            color: #333;
+        }
+
+        /* Portfolio Home Navigation */
+        .home-nav { 
+            max-width: 850px;
+            margin: 20px auto 30px auto;
+            text-align: right; 
+            padding-bottom: 15px; 
+            border-bottom: 1px solid #e2e8f0; 
+        }
+        .home-nav a { 
+            text-decoration: none; 
+            font-weight: bold; 
+            color: #2980b9;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+        .home-nav a:hover { color: #2c3e50; text-decoration: underline; }
+
+        
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
+    <!-- GLOBAL HOME NAVIGATION -->
+    <nav class="home-nav">
+        <a href="index.html"><i class="fa-solid fa-house mr-2"></i>Return to Portfolio Home</a>
+    </nav>
 
     <nav class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
