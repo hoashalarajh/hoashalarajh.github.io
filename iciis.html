@@ -293,7 +293,7 @@
         <!-- COGNITIVE/THEORETICAL SECTION -->
         <section id="cognition" class="tab-content">
             <div class="mb-8">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">The Empirical Method & Appendix Proof</h2>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">The Empirical Method & The Theoretical Guarantee</h2>
                 <p class="text-lg text-slate-600 max-w-4xl leading-relaxed">
                     Why is 1.2s windowing and plurality voting effective? The research provides a theoretical guarantee that the classification error decreases <strong>exponentially</strong> with signal length.
                 </p>
@@ -427,7 +427,7 @@
                 },
                 plurality: {
                     title: "Plurality Voting",
-                    desc: "Instead of relying on one segment, the system takes the majority vote from all N segments of a response. The Appendix proves this lowers error exponentially."
+                    desc: "Instead of relying on one segment, the system takes the majority vote from all N segments of a response. By using Hoeffding's inequality we later proved that failure probability would decrease exponentially as number of segments increase"
                 }
             }
         };
