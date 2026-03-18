@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV | Hoashalarajh Rajendran</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base styling consistent with your portfolio */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            margin: 40px auto; 
+            max-width: 1280px; 
+            padding: 0 20px; 
+            color: #333; 
+            background-color: #f9f9f9; 
+        }
+        
+        header { 
+            margin-bottom: 20px; 
+        }
+        
+        h1 { 
+            color: #2c3e50; 
+            margin: 0; 
+            font-size: 1.8em; 
+            border-bottom: 2px solid #2c3e50; 
+            padding-bottom: 10px;
+        }
+
+        .pdf-container { 
+            width: 100%; 
+            height: 1000px; /* Increased height for better CV viewing */
+            border: 1px solid #ccc; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            margin-top: 20px;
+        }
+        
+        /* Navigation Styling */
+        nav { 
+            text-align: right; 
+            margin-bottom: 30px; 
+            padding-bottom: 10px; 
+            border-bottom: 1px solid #ddd; 
+        }
+        nav a { 
+            margin-right: 20px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            display: inline-block;
+        }
+        nav a:last-child {
+            margin-right: 0; 
+        }
+        nav a.active { color: #2c3e50; cursor: default; }
+        nav a.inactive { color: #2980b9; }
+        nav a:hover:not(.active) { text-decoration: underline; }
+
+        /* Dropdown Styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: transparent; 
+            min-width: 250px;
+            z-index: 1000;
+            padding-top: 15px; 
+            margin-top: -5px; 
+            text-align: left;
+        }
+
+        .dropdown-items {
+            background-color: #fff;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: #2980b9 !important;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            margin-right: 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content a:last-child { border-bottom: none; }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #2c3e50 !important;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown .fa-chevron-down {
+            font-size: 0.7em;
+            margin-left: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="inactive">Home</a>
+        <a href="projects.html" class="inactive">Projects</a>
+        <a href="proofs.html" class="inactive">Proofs</a>
+        <a href="cv.html" class="active">CV</a>
+        
+        <div class="dropdown">
+            <a href="#" class="inactive">Paper Summaries <i class="fa-solid fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <div class="dropdown-items">
+                    <a href="mercon.html"><i class="fa-solid fa-robot" style="margin-right: 8px;"></i> MERCon 2023: Proactive HRI</a>
+                    <a href="iciis.html"><i class="fa-solid fa-microphone-lines" style="margin-right: 8px;"></i> ICIIS 2023: Emotion Intensity</a>
+                    <a href="htc.html"><i class="fa-solid fa-robot" style="margin-right: 8px;"></i> R10-HTC 2023 - Context-aware CMS</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <section>
+        <header>
+            <h1>Curriculum Vitae</h1>
+        </header>
+
+        <section>
+            <iframe class="pdf-container" src="CV_Hoashalarajh_Rajendran.pdf" title="Hoashalarajh Rajendran CV">
+                <p>Your browser does not support viewing PDFs directly. 
+                   <a href="CV.pdf">Click here to download my CV</a>.
+                </p>
+            </iframe>
+        </section>
+    </section>
+
+    <footer style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd;">
+        <p>&copy; 2026 Hoashalarajh Rajendran</p>
+    </footer>
+
+</body>
+</html>
