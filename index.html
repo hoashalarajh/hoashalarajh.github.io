@@ -266,6 +266,12 @@
                     <br>
                     The intent of any human or social group is never completely observable to a robot agent. Imagine a robot navigating a crowded environment filled with static obstacles, individual pedestrians, and various groups of people moving in different directions. In such a scenario, the robot has no definitive way of knowing where each individual or group might move, yet it must navigate through them. As the number of these social entities (referring to both individuals and groups) increases, the robot can succumb to the "freezing robot problem," becoming paralyzed and unable to take any action toward its goal.
                     <br>
+
+                    <div class="project-gallery">
+                        <img src="soc_nav.png" alt="social_nav" class="project-img">
+                    </div>
+
+                
                     <b>Rationale 01: Justifying the need for POMDP framework</b>
                     <br>
                     Fortunately, humans are flexible. Unlike static obstacles or preprogrammed devices like cleaning robots, humans anticipate the movements of the robot, creating a high probability that they will naturally yield space. However, this does not mean the robot can greedily cut through human groups. Not all groups function identically; even if a group appears uniform, one part might make way while another remains completely unaware of the robot's presence. Therefore, the success of any action the robot takes depends heavily on the true state of the social group. The robot needs to consider factors such as the group's size, heading direction, and potential cohesion. By analyzing these, the robot can estimate the intent of each group. Because this is still only an estimate and the true state remains uncertain, I propose modeling the robot's high-level decision-making as a Partially Observable Markov Decision Process (POMDP). This allows the robot to maintain a "belief state", a probability distribution over the possible states of the social groups.
