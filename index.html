@@ -168,6 +168,32 @@
             height: 100%;
             object-fit: cover; 
         }
+
+        .image-container {
+            position: relative;    /* This is crucial: it makes the text position itself relative to this container */
+            display: inline-block; /* Keeps the container exactly the size of your image */
+        }
+        
+        .image-container img {
+            display: block;        /* Removes the default extra space below images */
+            max-width: 100%;       /* Ensures the image is responsive */
+            height: auto;
+        }
+        
+        .attribution {
+            position: absolute;    /* Takes the text out of the normal flow to place it over the image */
+            bottom: 8px;           /* Distance from the bottom edge */
+            right: 8px;            /* Distance from the right edge (change to 'left: 8px;' for the bottom left) */
+            
+            /* Styling to make it look minimalist and readable */
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+            color: #ffffff;                       /* White text */
+            font-size: 11px;                      /* Small text size */
+            font-family: sans-serif;
+            padding: 3px 6px;                     /* Small space around the text */
+            border-radius: 4px;                   /* Slightly rounded corners */
+            opacity: 0.7;                         /* Makes it slightly faded so it isn't distracting */
+        }
         
     </style>
 </head>
@@ -267,10 +293,11 @@
                     The intent of any human or social group is never completely observable to a robot agent. Imagine a robot navigating a crowded environment filled with static obstacles, individual pedestrians, and various groups of people moving in different directions. In such a scenario, the robot has no definitive way of knowing where each individual or group might move, yet it must navigate through them. As the number of these social entities (referring to both individuals and groups) increases, the robot can succumb to the "freezing robot problem," becoming paralyzed and unable to take any action toward its goal.
                     <br>
 
-                    <div class="project-gallery">
-                        <img src="soc_nav.png" alt="social_nav" class="project-img">
+                    <div class="image-container">
+                        <img src="soc_nav" alt="A description of the image">
+                        <span class="attribution">Created with Nano Banana 2</span>
                     </div>
-
+                    <br>
                 
                     <b>Rationale 01: Justifying the need for POMDP framework</b>
                     <br>
