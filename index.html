@@ -194,6 +194,11 @@
             border-radius: 4px;                   /* Slightly rounded corners */
             opacity: 0.7;                         /* Makes it slightly faded so it isn't distracting */
         }
+
+        mark { 
+          background-color: lightgreen;
+          color: black;
+        }
         
     </style>
 </head>
@@ -290,9 +295,9 @@
                 <p>
                     <b>The Core Problem: Partial Observability Leading to Freezing</b>
                     <br>
-                    The intent of any human or social group is never completely observable to a robot agent. Imagine a robot navigating a crowded environment filled with static obstacles, individual pedestrians, and various groups of people moving in different directions. In such a scenario, the robot has no definitive way of knowing where each individual or group might move, yet it must navigate through them. As the number of these social entities (referring to both individuals and groups) increases, the robot can succumb to the "freezing robot problem," becoming paralyzed and unable to take any action toward its goal.
+                        The <mark><b>intent</b></mark> of any human or social group is <mark><b>never completely observable</b></mark> to a robot agent. Imagine a robot navigating a crowded environment filled with static obstacles, individual pedestrians, and various groups of people moving in different directions. In such a scenario, the robot has no definitive way of knowing where each individual or group might move, yet it must navigate through them. As the number of these social entities (referring to both individuals and groups) increases, the robot can succumb to the <mark><b>"freezing robot problem"</b></mark> becoming paralyzed and unable to take any action <mark><b>toward its goal</b></mark>.
                     <br>
-
+                    
                     <div class="image-container">
                         <img src="soc_nav.png" alt="A description of the image">
                         <span class="attribution">Created with Nano Banana 2</span>
