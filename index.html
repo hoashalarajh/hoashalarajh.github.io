@@ -333,12 +333,17 @@
                     <br>
                         Another <mark>significant challenge</mark> is integrating <mark>social norms</mark> into the robot's driving behavior. Traditional approaches rely on <mark>model-based social cost functions or cost maps</mark> to define personal spaces, tuning parameters for specific situations. However, personal space and group social costs are <mark>highly variable</mark> and depend on factors that are <mark>difficult to capture through rigid mathematical parameterization</mark>. <br> Furthermore, for a robot to effectively navigate a crowd, it must first understand <mark>how a goal-oriented human would do so</mark>. While previous research has utilized <mark><b>Inverse Reinforcement Learning (IRL)</b></mark> for crowd navigation, these models often assume <mark>homogeneous crowds</mark>, treating every human as an identical copy. They fail to <mark>partition the human population into distinct crowds</mark> with <mark>varying abilities, features, cohesion levels, and intentions</mark>.
                     <br>
+                <br>
+                <br>
                     <div class="image-container">
                         <img src="proposal.png" alt="Proposed Plan">
                         <span class="attribution">Overview of the method and Comparison against baselines</span>
                     </div>
                     <br>
-                    <b>IRL Strategy: Let's Begin the GAME!</b>
+                        <br>
+                <br>
+                
+                    <b>IRL - Strategy for Data Collection</b>
                     <br>
                         To address this limitation, I needed a system to <mark>demonstrate authentic human navigation strategies</mark> in <mark>highly crowded spaces</mark> to the robot. To achieve this, I plan to design a <mark>gamified environment</mark> where human players are given a <mark>mission</mark> and <mark>visualized as robots</mark> within a <mark>dense crowd</mark>. <br> This simulated crowd will be carefully engineered to exhibit <mark>random and unique behaviors</mark>, such as <mark>varying cohesion levels, merging and splitting dynamics, and adherence to dominant pedestrian flows</mark>.
 
