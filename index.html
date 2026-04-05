@@ -324,11 +324,11 @@
                     Fortunately, <mark>humans are flexible</mark>. Unlike static obstacles or preprogrammed devices like cleaning robots, <mark>humans anticipate the movements of the robot</mark>, creating a high probability that they will naturally yield space. However, this does not mean the robot can greedily cut through human groups. Not all groups function identically; even if a group appears uniform, one part might make way while another remains completely unaware of the robot's presence. <br> Therefore, the success of any action the robot takes depends heavily on the <mark>true state of the social group</mark>. The robot needs to consider factors such as the <mark>group's size, heading direction, and potential cohesion</mark>. By analyzing these, the robot can <mark>estimate</mark> the intent of each group. Because this is still only an estimate and the true state remains uncertain, I propose modeling the robot's high-level decision-making as a <mark><b>Partially Observable Markov Decision Process (POMDP)</b></mark>. This allows the robot to maintain a <mark><b>"belief state"</b></mark>, a probability distribution over the possible states of the social groups.
                     <br><br> <div style="text-align: center; margin: 20px 0;">
                     <video autoplay loop muted playsinline style="max-width: 80%; border-radius: 5px; border: 1px solid #ddd; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <source src="active_contour_with_ip.mp4" type="video/mp4">
+                        <source src="output_human_detection_11n.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <br>
-                    <span style="font-size: 0.9em; color: #555; font-style: italic;">Preliminary work: Segmenting individuals and social groups in busy environments using a combination of Mathematical Morphology and Active Contours. <br>The algorithm was designed and validated in MATLAB R2024b. Python version is also available</span>
+                    <span style="font-size: 0.9em; color: #555; font-style: italic;">Preliminary work: Segmenting individuals and social groups in busy environments using a combination of Mathematical Morphology and Active Contours. <br>The algorithm was designed and validated in MATLAB R2024b. Python version is also available. <br> Human detection was performed using the YOLOv11 model. Notably, the model performs better at detecting individuals than groups of humans.</span>
                 </div>
                 <br>
                     <b>Rationale 02: Justifying the need for Game-based IRL</b>
