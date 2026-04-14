@@ -108,6 +108,63 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+
+        /* --- Responsive Design / Mobile Layout --- */
+        @media (max-width: 900px) {
+            /* Stack the header elements vertically */
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            /* Center the contact links and adjust spacing */
+            .header-text p.contact-info a {
+                display: inline-block;
+                margin: 5px 10px;
+            }
+
+            /* Make the video fluid and responsive */
+            .header-video {
+                width: 100%;
+                max-width: 500px; /* Prevents it from getting too huge on tablets */
+                height: auto;
+            }
+            
+            .header-video video {
+                height: auto; /* Allows the video to scale naturally */
+                aspect-ratio: 16/9; /* Maintains the video's proportions */
+            }
+
+            /* Stack the navigation bar */
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-motto {
+                text-align: center;
+                line-height: 1.5;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            nav a {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            /* Ensure project images don't overflow */
+            .project-img {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
+        
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
