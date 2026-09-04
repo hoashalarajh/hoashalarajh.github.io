@@ -222,40 +222,54 @@
         </div>
 
         <div class="project-card">
-    <h3>Digital Twin of an Intelligent Production line with Adaptive Resource Handling</h3>
-    <p class="tech-stack"><strong>Tools:</strong> Discrete Event Simulation, Fuzzy inference system, Siemens Tecnomatix Plant Simulation</p>
-    <p>
-        During low-demand periods of the transformer manufacturing process, large-scale factories face severe problems due to a lack of utilization of the available resources, thereby leading to unexpected machine failures. There is a need to understand the production line behavior and allocate the resources that suit particular demand, maximizing the use of all available resources so that machine downtime will be eventually reduced.
-    </p>
-
-    <b>Estimating Machine Failure Probability (MLE Method):</b>
-    <div class="mle-derivation">
-        <p>From annual maintenance data, we recorded times-to-failure ($t_i$) for each machine and assumed an Exponential distribution for failures. The rate parameter ($\lambda$) was estimated using Maximum Likelihood Estimation (MLE) of all observations.</p>
-        <p>1. Defined Probability Density Function (PDF) for a single machine failing at time $t_i$:<br>$f(t_i | \lambda) = \lambda e^{-\lambda t_i}$</p>
-        <p>2. Calculated the Joint Likelihood $L(\lambda)$ of $n$ independent failures:<br>$L(\lambda) = \prod_{i=1}^n \lambda e^{-\lambda t_i} = \lambda^n e^{-\lambda \sum t_i}$</p>
-        <p>3. Maximize the Log-Likelihood $\ln(L(\lambda))$ to find the optimal $\lambda$:<br>$\ln(L(\lambda)) = n \ln(\lambda) - \lambda \sum_{i=1}^n t_i$</p>
-        <p>4. Maximize by differentiation and set to zero:<br>$\frac{d}{d\lambda}[\ln(L(\lambda))] = \frac{n}{\lambda} - \sum t_i = 0$</p>
-        <p>5. Solving for the MLE of the failure rate ($\lambda_{MLE}$):<br>$\lambda_{MLE} = \frac{n}{\sum_{i=1}^n t_i}$</p>
-        <p>Example Application: Applied to actual data with $n=5$ failures and times $t = \{12, 15, 22, 38, 42\}$ hours. Total time $\sum t_i = 129$ hours. <br>Calculated Failure Rate: $\lambda = \frac{5}{129} \approx 0.0387$ failures/hour.</p>
-    </div>
-
-    <p>
-        We modeled the digital twin of the electric transformer production line using actual data such as operation time per part and machine failure rates. Bottlenecks and inefficiencies were identified through multiple simulations. An algorithm using multiple fuzzy logic controllers were implemented to monitor performance and optimize machine combinations.
+        <h3>Digital Twin of an Intelligent Production line with Adaptive Resource Handling</h3>
+        <p class="tech-stack"><strong>Tools:</strong> Discrete Event Simulation, Fuzzy inference system, Siemens Tecnomatix Plant Simulation</p>
+        <p>
+            During low-demand periods of the transformer manufacturing process, large-scale factories face severe problems due to a lack of utilization of the available resources, thereby leading to unexpected machine failures. There is a need to understand the production line behavior and allocate the resources that suit particular demand, maximizing the use of all available resources so that machine downtime will be eventually reduced.
+        </p>
+    
+        <b>Estimating Machine Failure Probability (MLE Method):</b>
+        <div class="mle-derivation" style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #007bff; margin-bottom: 15px;">
+            <p>From annual maintenance data, we recorded times-to-failure (<i>t<sub>i</sub></i>) for each machine and assumed an Exponential distribution for failures. The rate parameter (<i>&lambda;</i>) was estimated using Maximum Likelihood Estimation (MLE) of all observations.</p>
+            <ol>
+                <li><b>Defined Probability Density Function (PDF)</b> for a single machine failing at time <i>t<sub>i</sub></i>:<br>
+                <i>f(t<sub>i</sub> | &lambda;) = &lambda;e<sup>-&lambda;t<sub>i</sub></sup></i></li>
+                <br>
+                <li><b>Calculated the Joint Likelihood <i>L(&lambda;)</i></b> of <i>n</i> independent failures:<br>
+                <i>L(&lambda;) = &Pi;<sub>i=1</sub><sup>n</sup> &lambda;e<sup>-&lambda;t<sub>i</sub></sup> = &lambda;<sup>n</sup>e<sup>-&lambda;&Sigma;t<sub>i</sub></sup></i></li>
+                <br>
+                <li><b>Maximize the Log-Likelihood <i>ln(L(&lambda;))</i></b> to find the optimal <i>&lambda;</i>:<br>
+                <i>ln(L(&lambda;)) = n&middot;ln(&lambda;) - &lambda;&Sigma;<sub>i=1</sub><sup>n</sup> t<sub>i</sub></i></li>
+                <br>
+                <li><b>Maximize by differentiation</b> and set to zero:<br>
+                <i>d/d&lambda; [ln(L(&lambda;))] = n/&lambda; - &Sigma;t<sub>i</sub> = 0</i></li>
+                <br>
+                <li><b>Solving for the MLE</b> of the failure rate (<i>&lambda;<sub>MLE</sub></i>):<br>
+                <i>&lambda;<sub>MLE</sub> = n / &Sigma;<sub>i=1</sub><sup>n</sup> t<sub>i</sub></i></li>
+            </ol>
+            <p><b>Example Application:</b> Applied to actual data with <i>n=5</i> failures and times <i>t = {12, 15, 22, 38, 42}</i> hours. Total time <i>&Sigma;t<sub>i</sub> = 129</i> hours. <br>
+            Calculated Failure Rate: <i>&lambda; = 5 / 129 &approx; 0.04</i> failures/hour.</p>
+        </div>
+    
+        <p>
+            We modeled the digital twin of the electric transformer production line using actual data such as operation time per part and machine failure rates. Bottlenecks and inefficiencies were identified through multiple simulations. An algorithm using multiple fuzzy logic controllers were implemented to monitor performance and optimize machine combinations.
+            <br><br>
+            To do so, we proposed a fuzzy logic-based machine switching strategy for workers to increase the throughput of the production line by 12.5% in a 20 days of simulation run.
+        </p>
+        
+        <b>System modeled in Siemens Tecnomatix Plant Simulation Software:</b>
+        <div class="project-gallery">
+            <img src="factory_cell.png" alt="Factory Model" class="project-img">
+        </div>
         <br>
-        To do so, we proposed a fuzzy logic-based machine switching strategy for workers to increase the throughput of the production line by 12.5% in a 20 days of simulation run.
-    </p>
-    <b>System modeled in Siemens Tecnomatix Plant Simulation Software:</b>
-    <div class="project-gallery">
-        <img src="factory_cell.png" alt="Factory Model" class="project-img">
+        
+        <b>Video Demonstration:</b>
+        <br>
+        <video controls style="max-width: 100%;">
+            <source src="digital_twin.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
-    <br>
-    <b>Video Demonstration:</b>
-    <br>
-    <video controls>
-        <source src="digital_twin.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</div>
         
     </section>
 
