@@ -228,7 +228,7 @@
             During low-demand periods of the transformer manufacturing process, large-scale factories face severe problems due to a lack of utilization of the available resources, thereby leading to unexpected machine failures. There is a need to understand the production line behavior and allocate the resources that suit particular demand, maximizing the use of all available resources so that machine downtime will be eventually reduced.
         </p>
     
-        <b>Estimating Machine Failure Probability (MLE Method):</b>
+        <b>Estimating Machine Failure Probability Maximum Likelihood Estimation(MLE):</b>
         <div class="mle-derivation" style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #007bff; margin-bottom: 15px;">
             <p>From annual maintenance data, we recorded times-to-failure (<i>t<sub>i</sub></i>) for each machine and assumed an Exponential distribution for failures. The rate parameter (<i>&lambda;</i>) was estimated using Maximum Likelihood Estimation (MLE) of all observations.</p>
             <ol>
@@ -247,7 +247,7 @@
                 <li><b>Solving for the MLE</b> of the failure rate (<i>&lambda;<sub>MLE</sub></i>):<br>
                 <i>&lambda;<sub>MLE</sub> = n / &Sigma;<sub>i=1</sub><sup>n</sup> t<sub>i</sub></i></li>
             </ol>
-            <p><b>Computing Failure rate of aHigh Voltage (HV) Winding Machine:</b><br>
+            <p><b>Computing Failure rate of a High Voltage (HV) Winding Machine:</b><br>
             Based on actual maintenance data, we observed <i>n = 5</i> failures occurring at <i>t = {12, 15, 22, 38, 42}</i> hours. Given a total operating time of <i>&Sigma;t<sub>i</sub> = 129</i> hours, the estimated failure rate is <i>&lambda; = 5 / 129 &approx; 0.04</i> failures/hour.</p>
         </div>
     
