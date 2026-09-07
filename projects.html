@@ -173,6 +173,18 @@
                 flex: 1 1 100%;
                 max-width: 100%;
             }
+             /* Ensure project images don't overflow */
+            .project-img {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
+        
+        /* Data Table Styling for Game Theory Project */
+        .data-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9em; background-color: #fff; }
+        .data-table th, .data-table td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        .data-table th { background-color: #f2f2f2; color: #2c3e50; font-weight: bold; }
+        .data-table tr:nth-child(even) { background-color: #fcfcfc; }
         }
         
     </style>
@@ -269,6 +281,153 @@
             <source src="digital_twin.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+    </div>
+
+        <div class="project-card">
+        <h3>Strategic Bidding in a Congested Power System: A Bayesian Game Approach</h3>
+        <p class="tech-stack"><strong>Tools:</strong> Game Theory, Python, Optimal Power Flow (OPF), Probabilistic Modeling</p>
+        <p>
+            This project models the strategic bidding behavior in a wholesale electricity market where a conventional Independent Power Producer (IPP) and a Renewable Energy (Wind) generator compete. The core challenge addressed is <b>asymmetric information</b>: the Wind generator has private knowledge of its exact available generation capacity, whereas the IPP must bid blindly, relying solely on prior probabilistic beliefs about the wind states.
+        </p>
+        
+        <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">1. Game Parameters & Optimal Power Flow (OPF) Data</h4>
+        <p>
+            The fundamental parameters of the game establish the cost structure and the probabilities of the hidden states of nature.
+            <br><b>Marginal Costs:</b> IPP = $30.0/MWh, Wind = $0.0/MWh.
+            <br><b>Probabilities of Nature's States:</b> High Wind (Max Capacity: 60 MW) = 0.6, Low Wind (Max Capacity: 10 MW) = 0.4.
+        </p>
+        
+        <p>The payoffs are derived from a simulated physical Optimal Power Flow (OPF). Below is the raw structural OPF dataset representing [LMP IPP, Dispatch IPP, LMP Wind, Dispatch Wind] under all possible action profiles and states:</p>
+        
+        <div style="overflow-x: auto;">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Wind State</th>
+                        <th>IPP Action</th>
+                        <th>Wind Action</th>
+                        <th>LMP IPP ($/MWh)</th>
+                        <th>Disp IPP (MW)</th>
+                        <th>LMP Wind ($/MWh)</th>
+                        <th>Disp Wind (MW)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- High Wind Data -->
+                    <tr>
+                        <td rowspan="4" style="vertical-align: middle;"><b>High Wind (60 MW)</b></td>
+                        <td rowspan="2" style="vertical-align: middle;">Conservative (40 MW)</td>
+                        <td>Withhold (0 MW)</td><td>80.0</td><td>40.0</td><td>80.0</td><td>0.0</td>
+                    </tr>
+                    <tr><td>Max (60 MW)</td><td>80.0</td><td>40.0</td><td>80.0</td><td>60.0</td></tr>
+                    <tr>
+                        <td rowspan="2" style="vertical-align: middle;">Aggressive (100 MW)</td>
+                        <td>Withhold (0 MW)</td><td>80.0</td><td>100.0</td><td>80.0</td><td>0.0</td>
+                    </tr>
+                    <tr><td>Max (60 MW)</td><td>41.0</td><td>40.0</td><td>41.0</td><td>60.0</td></tr>
+                    
+                    <!-- Low Wind Data -->
+                    <tr>
+                        <td rowspan="4" style="vertical-align: middle;"><b>Low Wind (10 MW)</b></td>
+                        <td rowspan="2" style="vertical-align: middle;">Conservative (40 MW)</td>
+                        <td>Withhold (0 MW)</td><td>80.0</td><td>40.0</td><td>80.0</td><td>0.0</td>
+                    </tr>
+                    <tr><td>Max (10 MW)</td><td>80.0</td><td>40.0</td><td>80.0</td><td>10.0</td></tr>
+                    <tr>
+                        <td rowspan="2" style="vertical-align: middle;">Aggressive (100 MW)</td>
+                        <td>Withhold (0 MW)</td><td>80.0</td><td>100.0</td><td>80.0</td><td>0.0</td>
+                    </tr>
+                    <tr><td>Max (10 MW)</td><td>91.0</td><td>91.0</td><td>41.8</td><td>10.0</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">2. Ex-Post Payoffs (Perfect Information)</h4>
+        <p>
+            The utility function for each player is defined as their net operational profit:
+            <br><code style="background: #eee; padding: 2px 6px; border-radius: 4px;">U<sub>i</sub>(a<sub>IPP</sub>, a<sub>Wind</sub>, &theta;) = (LMP<sub>i</sub> &times; Dispatch<sub>i</sub>) - (Marginal Cost<sub>i</sub> &times; Dispatch<sub>i</sub>)</code>
+        </p>
+        <p>Applying this formula to the OPF data yields the exact Ex-Post payoffs (U<sub>IPP</sub>, U<sub>Wind</sub>) assuming perfect information of the wind state:</p>
+        
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px;">
+                <p style="margin-bottom: 5px;"><b>State: High Wind</b></p>
+                <table class="data-table" style="margin-top: 0;">
+                    <tr><th>IPP \ Wind</th><th>Withhold</th><th>Max</th></tr>
+                    <tr><td><b>Conservative</b></td><td>(2000, 0)</td><td>(2000, 4800)</td></tr>
+                    <tr><td><b>Aggressive</b></td><td>(5000, 0)</td><td>(440, 2460)</td></tr>
+                </table>
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <p style="margin-bottom: 5px;"><b>State: Low Wind</b></p>
+                <table class="data-table" style="margin-top: 0;">
+                    <tr><th>IPP \ Wind</th><th>Withhold</th><th>Max</th></tr>
+                    <tr><td><b>Conservative</b></td><td>(2000, 0)</td><td>(2000, 800)</td></tr>
+                    <tr><td><b>Aggressive</b></td><td>(5000, 0)</td><td>(5551, 418)</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">3. Expected Utility (Bayesian Normal Form)</h4>
+        <p>
+            Because the IPP acts without knowing the true wind state, we evaluate its decisions against the four composite strategies available to the Wind player (e.g., "WM" denotes Withholding in High wind, but bidding Max in Low wind). The Ex-Ante Expected Utility (EU) represents a probability-weighted average:
+            <br><code style="background: #eee; padding: 2px 6px; border-radius: 4px;">E[U] = 0.6 &times; U<sub>High</sub> + 0.4 &times; U<sub>Low</sub></code>
+        </p>
+
+        <div style="overflow-x: auto;">
+            <table class="data-table">
+                <tr>
+                    <th>IPP \ Wind Strategy</th>
+                    <th>WW <br><small>(Withhold, Withhold)</small></th>
+                    <th>WM <br><small>(Withhold, Max)</small></th>
+                    <th>MW <br><small>(Max, Withhold)</small></th>
+                    <th>MM <br><small>(Max, Max)</small></th>
+                </tr>
+                <tr>
+                    <td><b>Conservative</b></td>
+                    <td>(2000, 0)</td>
+                    <td>(2000, 320)</td>
+                    <td>(2000, 2880)</td>
+                    <td>(2000, 3200)</td>
+                </tr>
+                <tr>
+                    <td><b>Aggressive</b></td>
+                    <td>(5000, 0)</td>
+                    <td>(5220.4, 167.2)</td>
+                    <td>(2264, 1476)</td>
+                    <td style="background-color: #d1ecf1; font-weight: bold; border: 2px solid #17a2b8;">(2484.4, 1643.2)</td>
+                </tr>
+            </table>
+        </div>
+
+        <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">4. Proposition & Equilibrium Analysis</h4>
+        <div style="background-color: #f1f8ff; padding: 20px; border-left: 5px solid #007bff; border-radius: 4px; margin-bottom: 15px;">
+            <p style="font-size: 1.1em; color: #0056b3; margin-top: 0;"><b>Proposition:</b></p>
+            <p style="font-style: italic; margin-bottom: 15px;">
+                The strategy profile <b>s* = (Aggressive, (Max, Max))</b> constitutes the unique pure-strategy Bayesian Nash Equilibrium (BNE) of the modeled electricity market game.
+            </p>
+            
+            <p style="font-weight: bold; margin-bottom: 5px;">Mathematical Proof:</p>
+            <ol style="margin-left: 20px; line-height: 1.7;">
+                <li><b>Identify strictly dominant strategies for the Wind generator:</b><br>
+                The Wind generator operates at zero marginal cost ($0/MWh). Consequently, its profit strictly correlates with the total dispatched volume, assuming a non-negative Locational Marginal Pricing (LMP). Analyzing the Ex-Post payoffs, bidding "Max" yields a strictly higher payoff than "Withhold" against any IPP bid in <i>both</i> High and Low wind conditions. Therefore, the strategy mapping to play Max under all conditions, denoted as <b>MM (Max, Max)</b>, is strictly dominant.
+                </li>
+                <br>
+                <li><b>Identify the IPP's Best Response (BR):</b><br>
+                Recognizing that a rational Wind player will execute its strictly dominant strategy (MM), the IPP evaluates its expected payoffs conditionally against MM using the Bayesian Normal Form matrix:
+                <ul style="list-style-type: circle; margin-left: 20px; margin-top: 5px; margin-bottom: 5px;">
+                    <li><i>EU<sub>IPP</sub>(Conservative | MM) = 2000.0</i></li>
+                    <li><i>EU<sub>IPP</sub>(Aggressive | MM) = 2484.4</i></li>
+                </ul>
+                Because 2484.4 > 2000.0, the IPP's strict best response to MM is to bid <b>Aggressive</b>.
+                </li>
+                <br>
+                <li><b>Conclusion of Unilateral Deviation:</b><br>
+                Given the profile (Aggressive, MM), neither player possesses a financial incentive to unilaterally deviate. Furthermore, because MM is derived via strict dominance, this Bayesian Nash Equilibrium point is mathematically unique. 
+                <span style="float: right; font-size: 1.5em; line-height: 1;">&#8718;</span>
+                </li>
+            </ol>
+        </div>
     </div>
         
     </section>
