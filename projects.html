@@ -211,79 +211,7 @@
     <section>
         <h2>Technical Projects</h2>
 
-        <div class="project-card">
-            <h3> <a href="https://github.com/hoashalarajh/task_oriented_conversation_system" target="_blank"> Humanization in Task-oriented Conversational Agents </a></h3>
-            <p class="tech-stack"><strong>Tools:</strong> Python, NLP, LLM, Algorithms</p>
-            <p> 
-                A short-term, extended task-oriented conversation system designed to gather user feedback about a lecture in a user-centered manner. The system leverages hierarchical state transitions to guide the conversation effectively.
-                <br><br>
-                <b>How this system is different and serves your purpose?</b>
-                <br>
-                A key advantage of this system is its adaptability to specific requirements. The pre-defined scripts utilized in the original implementation can be entirely replaced with your own custom scripts.
-                <br><br>
-                <b>Key features include:</b>
-                <ul style="list-style-type: disc; margin-left: 20px;">
-                    <li><b>State Management:</b> The architecture currently supports a maximum of four "superstates."</li>
-                    <li><b>Survey Structuring:</b> It is recommended to partition your survey questions into up to four main thematic blocks.</li>
-                    <li><b>Scalability:</b> Each block can handle an unlimited number of individual questions.</li>
-                </ul>
-            </p>
-            <div class="project-gallery">
-              <img src="HSTN.png" alt="HSTN Diagram" class="project-img">
-            </div>
-        </div>
-
-        <div class="project-card">
-        <h3>Digital Twin of an Intelligent Production line with Adaptive Resource Handling</h3>
-        <p class="tech-stack"><strong>Tools:</strong> Discrete Event Simulation, Fuzzy inference system, Siemens Tecnomatix Plant Simulation</p>
-        <p>
-            During low-demand periods of the transformer manufacturing process, large-scale factories face severe problems due to a lack of utilization of the available resources, thereby leading to unexpected machine failures. There is a need to understand the production line behavior and allocate the resources that suit particular demand, maximizing the use of all available resources so that machine downtime will be eventually reduced.
-        </p>
-    
-        <b>Estimating Machine Failure Probability Maximum Likelihood Estimation(MLE):</b>
-        <div class="mle-derivation" style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #007bff; margin-bottom: 15px;">
-            <p>From annual maintenance data, we recorded times-to-failure (<i>t<sub>i</sub></i>) for each machine and assumed an Exponential distribution for failures. The rate parameter (<i>&lambda;</i>) was estimated using Maximum Likelihood Estimation (MLE) of all observations.</p>
-            <ol>
-                <li><b>Defined Probability Density Function (PDF)</b> for a single machine failing at time <i>t<sub>i</sub></i>:<br>
-                <i>f(t<sub>i</sub> | &lambda;) = &lambda;e<sup>-&lambda;t<sub>i</sub></sup></i></li>
-                <br>
-                <li><b>Calculated the Joint Likelihood <i>L(&lambda;)</i></b> of <i>n</i> independent failures:<br>
-                <i>L(&lambda;) = &Pi;<sub>i=1</sub><sup>n</sup> &lambda;e<sup>-&lambda;t<sub>i</sub></sup> = &lambda;<sup>n</sup>e<sup>-&lambda;&Sigma;t<sub>i</sub></sup></i></li>
-                <br>
-                <li><b>Maximize the Log-Likelihood <i>ln(L(&lambda;))</i></b> to find the optimal <i>&lambda;</i>:<br>
-                <i>ln(L(&lambda;)) = n&middot;ln(&lambda;) - &lambda;&Sigma;<sub>i=1</sub><sup>n</sup> t<sub>i</sub></i></li>
-                <br>
-                <li><b>Maximize by differentiation</b> and set to zero:<br>
-                <i>d/d&lambda; [ln(L(&lambda;))] = n/&lambda; - &Sigma;t<sub>i</sub> = 0</i></li>
-                <br>
-                <li><b>Solving for the MLE</b> of the failure rate (<i>&lambda;<sub>MLE</sub></i>):<br>
-                <i>&lambda;<sub>MLE</sub> = n / &Sigma;<sub>i=1</sub><sup>n</sup> t<sub>i</sub></i></li>
-            </ol>
-            <p><b>Computing Failure rate of a High Voltage (HV) Winding Machine:</b><br>
-            Based on actual maintenance data, we observed <i>n = 5</i> failures occurring at <i>t = {12, 15, 22, 38, 42}</i> hours. Given a total operating time of <i>&Sigma;t<sub>i</sub> = 129</i> hours, the estimated failure rate is <i>&lambda; = 5 / 129 &approx; 0.04</i> failures/hour.</p>
-        </div>
-    
-        <p>
-            We modeled the digital twin of the electric transformer production line using actual data such as operation time per part and machine failure rates. Bottlenecks and inefficiencies were identified through multiple simulations. An algorithm using multiple fuzzy logic controllers were implemented to monitor performance and optimize machine combinations.
-            <br><br>
-            To do so, we proposed a fuzzy logic-based machine switching strategy for workers to increase the throughput of the production line by 12.5% in a 20 days of simulation run.
-        </p>
-        
-        <b>System modeled in Siemens Tecnomatix Plant Simulation Software:</b>
-        <div class="project-gallery">
-            <img src="factory_cell.png" alt="Factory Model" class="project-img">
-        </div>
-        <br>
-        
-        <b>Video Demonstration:</b>
-        <br>
-        <video controls style="max-width: 100%;">
-            <source src="digital_twin.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-
-        <div class="project-card">
+                <div class="project-card">
         <h3>Strategic Bidding in a Congested Power System: A Bayesian Game Approach</h3>
         <p class="tech-stack"><strong>Tools:</strong> Game Theory, Python, Optimal Power Flow (OPF), Probabilistic Modeling</p>
         <p>
@@ -428,6 +356,78 @@
                 </li>
             </ol>
         </div>
+    </div>
+
+        <div class="project-card">
+            <h3> <a href="https://github.com/hoashalarajh/task_oriented_conversation_system" target="_blank"> Humanization in Task-oriented Conversational Agents </a></h3>
+            <p class="tech-stack"><strong>Tools:</strong> Python, NLP, LLM, Algorithms</p>
+            <p> 
+                A short-term, extended task-oriented conversation system designed to gather user feedback about a lecture in a user-centered manner. The system leverages hierarchical state transitions to guide the conversation effectively.
+                <br><br>
+                <b>How this system is different and serves your purpose?</b>
+                <br>
+                A key advantage of this system is its adaptability to specific requirements. The pre-defined scripts utilized in the original implementation can be entirely replaced with your own custom scripts.
+                <br><br>
+                <b>Key features include:</b>
+                <ul style="list-style-type: disc; margin-left: 20px;">
+                    <li><b>State Management:</b> The architecture currently supports a maximum of four "superstates."</li>
+                    <li><b>Survey Structuring:</b> It is recommended to partition your survey questions into up to four main thematic blocks.</li>
+                    <li><b>Scalability:</b> Each block can handle an unlimited number of individual questions.</li>
+                </ul>
+            </p>
+            <div class="project-gallery">
+              <img src="HSTN.png" alt="HSTN Diagram" class="project-img">
+            </div>
+        </div>
+
+        <div class="project-card">
+        <h3>Digital Twin of an Intelligent Production line with Adaptive Resource Handling</h3>
+        <p class="tech-stack"><strong>Tools:</strong> Discrete Event Simulation, Fuzzy inference system, Siemens Tecnomatix Plant Simulation</p>
+        <p>
+            During low-demand periods of the transformer manufacturing process, large-scale factories face severe problems due to a lack of utilization of the available resources, thereby leading to unexpected machine failures. There is a need to understand the production line behavior and allocate the resources that suit particular demand, maximizing the use of all available resources so that machine downtime will be eventually reduced.
+        </p>
+    
+        <b>Estimating Machine Failure Probability Maximum Likelihood Estimation(MLE):</b>
+        <div class="mle-derivation" style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #007bff; margin-bottom: 15px;">
+            <p>From annual maintenance data, we recorded times-to-failure (<i>t<sub>i</sub></i>) for each machine and assumed an Exponential distribution for failures. The rate parameter (<i>&lambda;</i>) was estimated using Maximum Likelihood Estimation (MLE) of all observations.</p>
+            <ol>
+                <li><b>Defined Probability Density Function (PDF)</b> for a single machine failing at time <i>t<sub>i</sub></i>:<br>
+                <i>f(t<sub>i</sub> | &lambda;) = &lambda;e<sup>-&lambda;t<sub>i</sub></sup></i></li>
+                <br>
+                <li><b>Calculated the Joint Likelihood <i>L(&lambda;)</i></b> of <i>n</i> independent failures:<br>
+                <i>L(&lambda;) = &Pi;<sub>i=1</sub><sup>n</sup> &lambda;e<sup>-&lambda;t<sub>i</sub></sup> = &lambda;<sup>n</sup>e<sup>-&lambda;&Sigma;t<sub>i</sub></sup></i></li>
+                <br>
+                <li><b>Maximize the Log-Likelihood <i>ln(L(&lambda;))</i></b> to find the optimal <i>&lambda;</i>:<br>
+                <i>ln(L(&lambda;)) = n&middot;ln(&lambda;) - &lambda;&Sigma;<sub>i=1</sub><sup>n</sup> t<sub>i</sub></i></li>
+                <br>
+                <li><b>Maximize by differentiation</b> and set to zero:<br>
+                <i>d/d&lambda; [ln(L(&lambda;))] = n/&lambda; - &Sigma;t<sub>i</sub> = 0</i></li>
+                <br>
+                <li><b>Solving for the MLE</b> of the failure rate (<i>&lambda;<sub>MLE</sub></i>):<br>
+                <i>&lambda;<sub>MLE</sub> = n / &Sigma;<sub>i=1</sub><sup>n</sup> t<sub>i</sub></i></li>
+            </ol>
+            <p><b>Computing Failure rate of a High Voltage (HV) Winding Machine:</b><br>
+            Based on actual maintenance data, we observed <i>n = 5</i> failures occurring at <i>t = {12, 15, 22, 38, 42}</i> hours. Given a total operating time of <i>&Sigma;t<sub>i</sub> = 129</i> hours, the estimated failure rate is <i>&lambda; = 5 / 129 &approx; 0.04</i> failures/hour.</p>
+        </div>
+    
+        <p>
+            We modeled the digital twin of the electric transformer production line using actual data such as operation time per part and machine failure rates. Bottlenecks and inefficiencies were identified through multiple simulations. An algorithm using multiple fuzzy logic controllers were implemented to monitor performance and optimize machine combinations.
+            <br><br>
+            To do so, we proposed a fuzzy logic-based machine switching strategy for workers to increase the throughput of the production line by 12.5% in a 20 days of simulation run.
+        </p>
+        
+        <b>System modeled in Siemens Tecnomatix Plant Simulation Software:</b>
+        <div class="project-gallery">
+            <img src="factory_cell.png" alt="Factory Model" class="project-img">
+        </div>
+        <br>
+        
+        <b>Video Demonstration:</b>
+        <br>
+        <video controls style="max-width: 100%;">
+            <source src="digital_twin.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
         
     </section>
