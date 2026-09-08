@@ -306,6 +306,7 @@
                     <tr><td><b>Aggressive</b></td><td>(5000, 0)</td><td>(5551, 418)</td></tr>
                 </table>
             </div>
+            The Wind generator operates at zero marginal cost ($0/MWh). Consequently, its profit strictly correlates with the total dispatched volume, assuming a non-negative Locational Marginal Pricing (LMP). Analyzing the Ex-Post payoffs, bidding "Max" yields a strictly higher payoff than "Withhold" against any IPP bid in <i>both</i> High and Low wind conditions. Therefore, the strategy mapping to play Max under all conditions, denoted as <b>MM (Max, Max)</b>, is strictly dominant.
         </div>
 
         <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">3. Expected Utility (Bayesian Normal Form)</h4>
@@ -338,6 +339,14 @@
                     <td style="background-color: #d1ecf1; font-weight: bold; border: 2px solid #17a2b8;">(2484.4, 1643.2)</td>
                 </tr>
             </table>
+
+            Recognizing that a rational Wind player will execute its strictly dominant strategy (MM), the IPP evaluates its expected payoffs conditionally against MM using the Bayesian Normal Form matrix:
+            <ul style="list-style-type: circle; margin-left: 20px; margin-top: 5px; margin-bottom: 5px;">
+                <li><i>EU<sub>IPP</sub>(Conservative | MM) = 2000.0</i></li>
+                <li><i>EU<sub>IPP</sub>(Aggressive | MM) = 2484.4</i></li>
+            </ul>
+            Because EU<sub>IPP</sub>(Aggressive | MM) > EU<sub>IPP</sub>(Conservative | MM), the IPP's strict best response to MM is to bid <b>Aggressive</b>.
+            
         </div>
 
         <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">5. Computational Algorithm</h4>
