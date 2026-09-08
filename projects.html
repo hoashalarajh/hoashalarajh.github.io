@@ -367,7 +367,7 @@
             <span class="algo-keyword">FOR EACH</span> player <i>i</i> &isin; {IPP, Wind}:<br>
             <div class="algo-indent-1">BR<sub>i</sub>(s<sub>-i</sub>) &larr; argmax E[U<sub>i</sub>(s<sub>i</sub>, s<sub>-i</sub>)]</div>
             <span class="algo-keyword">FIND</span> profiles (s<sup>*</sup><sub>IPP</sub>, s<sup>*</sup><sub>Wind</sub>) where s<sup>*</sup><sub>IPP</sub> &isin; BR<sub>IPP</sub>(s<sub>Wind</sub>) <span class="algo-keyword">AND</span> s<sup>*</sup><sub>Wind</sub> &isin; BR<sub>Wind</sub>(s<sub>IPP</sub>)<br>
-            <span class="algo-keyword">RETURN</span> matching profiles as BNE
+            <span class="algo-keyword">RETURN</span> matching profiles (s<sup>*</sup><sub>IPP</sub>, s<sup>*</sup><sub>Wind</sub>)
         </div>
 
         <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">4. Proposition & Equilibrium Analysis</h4>
