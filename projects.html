@@ -291,7 +291,7 @@
         
         <div style="display: flex; gap: 20px; flex-wrap: wrap;">
             <div style="flex: 1; min-width: 300px;">
-                <p style="margin-bottom: 5px;"><b>State: High Wind (&theta;<sub>High</sub>)</b></p>
+                <p style="margin-bottom: 5px;"><b>State: High Wind (&theta;<sub>High</sub> = 0.6)</b></p>
                 <table class="data-table" style="margin-top: 0;">
                     <tr><th>IPP \ Wind</th><th>Withhold</th><th>Max</th></tr>
                     <tr><td><b>Conservative</b></td><td>(2000, 0)</td><td>(2000, 4800)</td></tr>
@@ -299,7 +299,7 @@
                 </table>
             </div>
             <div style="flex: 1; min-width: 300px;">
-                <p style="margin-bottom: 5px;"><b>State: Low Wind (&theta;<sub>Low</sub>)</b></p>
+                <p style="margin-bottom: 5px;"><b>State: Low Wind (&theta;<sub>Low</sub> = 0.4)</b></p>
                 <table class="data-table" style="margin-top: 0;">
                     <tr><th>IPP \ Wind</th><th>Withhold</th><th>Max</th></tr>
                     <tr><td><b>Conservative</b></td><td>(2000, 0)</td><td>(2000, 800)</td></tr>
@@ -379,61 +379,62 @@
             <span class="algo-keyword">RETURN</span> matching profiles (s<sup>*</sup><sub>IPP</sub>, s<sup>*</sup><sub>Wind</sub>)
         </div>
 
-        <div style="background-color: #f8f9fa; border-left: 4px solid #2c3e50; padding: 20px; margin: 30px 0; border-radius: 0 5px 5px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-            <h4 style="margin-top: 0; color: #2c3e50; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Proposition</h4>
+<h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">4. Proposition & Equilibrium Analysis</h4>
+        <div style="background-color: #f8f9fa; border-left: 4px solid #2c3e50; padding: 20px; margin: 20px 0; border-radius: 0 4px 4px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <p style="font-size: 1.1em; color: #2c3e50; margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 10px;"><b>Formal Proposition</b></p>
             <p>
-                Let $p \in [0, 1]$ represent the probability of the High Wind state ($\theta_{High}$) and $1-p$ represent the probability of the Low Wind state ($\theta_{Low}$). The strategic bidding game yields a unique pure-strategy Bayesian Nash Equilibrium (BNE) that is strictly dependent on the threshold probability $p^* = \frac{3551}{5111} \approx 0.695$:
+                Let <i>p</i> &isin; [0, 1] represent the probability of the High Wind state (<i>&theta;<sub>High</sub></i>) and 1 - <i>p</i> represent the probability of the Low Wind state (<i>&theta;<sub>Low</sub></i>). The strategic bidding game yields a unique pure-strategy Bayesian Nash Equilibrium (BNE) that is strictly dependent on the threshold probability <i>p<sup>*</sup></i> = 3551 / 5111 &approx; 0.695:
             </p>
-            <ul style="margin-bottom: 20px;">
-                <li>If $p < 0.695$, the unique BNE is <b>(Aggressive, MM)</b>.</li>
-                <li>If $p > 0.695$, the unique BNE is <b>(Conservative, MM)</b>.</li>
+            <ul style="margin-bottom: 20px; margin-left: 20px; list-style-type: disc;">
+                <li>If <i>p</i> &lt; 0.695, the unique BNE is <b>(Aggressive, MM)</b>.</li>
+                <li>If <i>p</i> &gt; 0.695, the unique BNE is <b>(Conservative, MM)</b>.</li>
             </ul>
-        
-            <h4 style="margin-top: 0; color: #2c3e50; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Mathematical Proof</h4>
+
+            <p style="font-size: 1.1em; color: #2c3e50; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-top: 25px;"><b>Mathematical Proof</b></p>
             
             <p><b>Step 1: Identify the Wind Generator's Dominant Strategy</b></p>
             <p>
-                The Wind generator observes the state of nature ($\theta$) prior to bidding. Because the Wind generator operates with a marginal cost of $C_{Wind} = \$0/MWh$, its profit is strictly positive as long as the Market Clearing Price (LMP) is greater than zero.
+                The Wind generator observes the state of nature (<i>&theta;</i>) prior to bidding. Because the Wind generator operates with a marginal cost of <i>C<sub>Wind</sub></i> = $0/MWh, its profit is strictly positive as long as the Market Clearing Price (LMP) is greater than zero.
             </p>
-            <ul>
-                <li><b>In state $\theta_{High}$:</b> Bidding "Max" yields either $\$4800$ or $\$2460$ (depending on IPP's action), whereas "Withhold" yields $\$0$. Max strictly dominates Withhold.</li>
-                <li><b>In state $\theta_{Low}$:</b> Bidding "Max" yields either $\$800$ or $\$418$, whereas "Withhold" yields $\$0$. Max strictly dominates Withhold.</li>
+            <ul style="margin-left: 20px; margin-bottom: 15px; list-style-type: circle;">
+                <li><b>In state <i>&theta;<sub>High</sub></i>:</b> Bidding "Max" yields either $4800 or $2460 (depending on IPP's action), whereas "Withhold" yields $0. Max strictly dominates Withhold.</li>
+                <li><b>In state <i>&theta;<sub>Low</sub></i>:</b> Bidding "Max" yields either $800 or $418, whereas "Withhold" yields $0. Max strictly dominates Withhold.</li>
             </ul>
             <p>
-                Since "Max" is strictly dominant in both states regardless of the probability $p$ or the IPP's action, the Wind generator will always play the strategy (Max, Max), denoted as <b>MM</b>.
+                Since "Max" is strictly dominant in both states regardless of the probability <i>p</i> or the IPP's action, the Wind generator will always play the strategy (Max, Max), denoted as <b>MM</b>.
             </p>
-        
-            <p style="margin-top: 15px;"><b>Step 2: Formulate the IPP's Expected Utility</b></p>
+
+            <p style="margin-top: 20px;"><b>Step 2: Formulate the IPP's Expected Utility</b></p>
             <p>
-                Knowing the Wind generator will play MM, the IPP must maximize its expected utility ($EU_{IPP}$) across the unknown states of nature. We formulate the IPP's expected utility as a function of $p$.
+                Knowing the Wind generator will play MM, the IPP must maximize its expected utility (<i>EU<sub>IPP</sub></i>) across the unknown states of nature. We formulate the IPP's expected utility as a function of <i>p</i>.
             </p>
             <p>If the IPP plays <b>Conservative</b> against MM:</p>
-            <p style="text-align: center; margin: 10px 0;">
-                $$EU_{IPP}(\text{Conservative, MM}) = p \cdot U_{IPP}(\theta_{High}) + (1-p) \cdot U_{IPP}(\theta_{Low})$$
-                $$EU_{IPP}(\text{Conservative, MM}) = p(2000) + (1-p)(2000) = 2000$$
-            </p>
+            <div style="text-align: center; margin: 10px 0; background-color: #fff; padding: 10px; border: 1px solid #eee; border-radius: 4px; font-family: 'Courier New', Courier, monospace;">
+                <i>EU<sub>IPP</sub></i>(Conservative, MM) = <i>p</i> &middot; <i>U<sub>IPP</sub>(&theta;<sub>High</sub>)</i> + (1 - <i>p</i>) &middot; <i>U<sub>IPP</sub>(&theta;<sub>Low</sub>)</i><br>
+                <i>EU<sub>IPP</sub></i>(Conservative, MM) = <i>p</i>(2000) + (1 - <i>p</i>)(2000) = 2000
+            </div>
             
             <p>If the IPP plays <b>Aggressive</b> against MM:</p>
-            <p style="text-align: center; margin: 10px 0;">
-                $$EU_{IPP}(\text{Aggressive, MM}) = p \cdot U_{IPP}(\theta_{High}) + (1-p) \cdot U_{IPP}(\theta_{Low})$$
-                $$EU_{IPP}(\text{Aggressive, MM}) = p(440) + (1-p)(5551)$$
-                $$EU_{IPP}(\text{Aggressive, MM}) = 5551 - 5111p$$
-            </p>
-        
-            <p style="margin-top: 15px;"><b>Step 3: Establish the Equilibrium Condition</b></p>
+            <div style="text-align: center; margin: 10px 0; background-color: #fff; padding: 10px; border: 1px solid #eee; border-radius: 4px; font-family: 'Courier New', Courier, monospace;">
+                <i>EU<sub>IPP</sub></i>(Aggressive, MM) = <i>p</i> &middot; <i>U<sub>IPP</sub>(&theta;<sub>High</sub>)</i> + (1 - <i>p</i>) &middot; <i>U<sub>IPP</sub>(&theta;<sub>Low</sub>)</i><br>
+                <i>EU<sub>IPP</sub></i>(Aggressive, MM) = <i>p</i>(440) + (1 - <i>p</i>)(5551)<br>
+                <i>EU<sub>IPP</sub></i>(Aggressive, MM) = 5551 - 5111<i>p</i>
+            </div>
+
+            <p style="margin-top: 20px;"><b>Step 3: Establish the Equilibrium Condition</b></p>
             <p>
                 For (Aggressive, MM) to be the Bayesian Nash Equilibrium, the IPP's expected utility for playing Aggressive must strictly exceed playing Conservative:
             </p>
-            <p style="text-align: center; margin: 10px 0;">
-                $$5551 - 5111p > 2000$$
-            </p>
-            <p>Solving for $p$:</p>
-            <p style="text-align: center; margin: 10px 0;">
-                $$3551 > 5111p$$
-                $$p < \frac{3551}{5111} \approx 0.69477...$$
-            </p>
-            <p>
-                Therefore, as long as the probability of High Wind ($p$) remains below approximately $69.5\%$, the IPP's best response to Wind's dominant strategy is Aggressive, establishing (Aggressive, MM) as the unique equilibrium. If the probability of High Wind exceeds this threshold, the IPP's expected utility for Aggressive drops below $\$2000$, making Conservative the rational best response, thereby shifting the equilibrium to (Conservative, MM). $\blacksquare$
+            <div style="text-align: center; margin: 10px 0; background-color: #fff; padding: 10px; border: 1px solid #eee; border-radius: 4px; font-family: 'Courier New', Courier, monospace;">
+                5551 - 5111<i>p</i> &gt; 2000
+            </div>
+            <p>Solving for <i>p</i>:</p>
+            <div style="text-align: center; margin: 10px 0; background-color: #fff; padding: 10px; border: 1px solid #eee; border-radius: 4px; font-family: 'Courier New', Courier, monospace;">
+                3551 &gt; 5111<i>p</i><br>
+                <i>p</i> &lt; 3551 / 5111 &approx; 0.69477...
+            </div>
+            <p style="line-height: 1.6;">
+                Therefore, as long as the probability of High Wind (<i>p</i>) remains below approximately 69.5%, the IPP's best response to Wind's dominant strategy is Aggressive, establishing (Aggressive, MM) as the unique equilibrium. If the probability of High Wind exceeds this threshold, the IPP's expected utility for Aggressive drops below $2000, making Conservative the rational best response, thereby shifting the equilibrium to (Conservative, MM). <span style="float: right; font-size: 1.5em; line-height: 1; color: #2c3e50;">&#8718;</span>
             </p>
         </div>
     </div>
