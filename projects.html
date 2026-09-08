@@ -349,7 +349,7 @@
             
         </div>
 
-        <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">5. Computational Algorithm</h4>
+        <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">4. Algorithm</h4>
         <p>To programmatically determine the market equilibrium, the theoretical framework is implemented using the following computational steps to evaluate all possible strategy spaces:</p>
         
         <div class="algorithm-box">
@@ -379,9 +379,9 @@
             <span class="algo-keyword">RETURN</span> matching profiles (s<sup>*</sup><sub>IPP</sub>, s<sup>*</sup><sub>Wind</sub>)
         </div>
 
-<h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">4. Proposition & Equilibrium Analysis</h4>
+<h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">5. Proposition & Equilibrium Analysis</h4>
         <div style="background-color: #f8f9fa; border-left: 4px solid #2c3e50; padding: 20px; margin: 20px 0; border-radius: 0 4px 4px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-            <p style="font-size: 1.1em; color: #2c3e50; margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 10px;"><b>Formal Proposition</b></p>
+            <p style="font-size: 1.1em; color: #2c3e50; margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 10px;"><b>Proposition</b></p>
             <p>
                 Let <i>p</i> &isin; [0, 1] represent the probability of the High Wind state (<i>&theta;<sub>High</sub></i>) and 1 - <i>p</i> represent the probability of the Low Wind state (<i>&theta;<sub>Low</sub></i>). The strategic bidding game yields a unique pure-strategy Bayesian Nash Equilibrium (BNE) that is strictly dependent on the threshold probability <i>p<sup>*</sup></i> = 3551 / 5111 &approx; 0.695:
             </p>
@@ -390,9 +390,9 @@
                 <li>If <i>p</i> &gt; 0.695, the unique BNE is <b>(Conservative, MM)</b>.</li>
             </ul>
 
-            <p style="font-size: 1.1em; color: #2c3e50; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-top: 25px;"><b>Mathematical Proof</b></p>
+            <p style="font-size: 1.1em; color: #2c3e50; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-top: 25px;"><b>Proof</b></p>
             
-            <p><b>Step 1: Identify the Wind Generator's Dominant Strategy</b></p>
+            <p><b>1. Identify the Wind Generator's Dominant Strategy</b></p>
             <p>
                 The Wind generator observes the state of nature (<i>&theta;</i>) prior to bidding. Because the Wind generator operates with a marginal cost of <i>C<sub>Wind</sub></i> = $0/MWh, its profit is strictly positive as long as the Market Clearing Price (LMP) is greater than zero.
             </p>
@@ -404,7 +404,7 @@
                 Since "Max" is strictly dominant in both states regardless of the probability <i>p</i> or the IPP's action, the Wind generator will always play the strategy (Max, Max), denoted as <b>MM</b>.
             </p>
 
-            <p style="margin-top: 20px;"><b>Step 2: Formulate the IPP's Expected Utility</b></p>
+            <p style="margin-top: 20px;"><b>2. Formulate the IPP's Expected Utility</b></p>
             <p>
                 Knowing the Wind generator will play MM, the IPP must maximize its expected utility (<i>EU<sub>IPP</sub></i>) across the unknown states of nature. We formulate the IPP's expected utility as a function of <i>p</i>.
             </p>
@@ -421,7 +421,7 @@
                 <i>EU<sub>IPP</sub></i>(Aggressive, MM) = 5551 - 5111<i>p</i>
             </div>
 
-            <p style="margin-top: 20px;"><b>Step 3: Establish the Equilibrium Condition</b></p>
+            <p style="margin-top: 20px;"><b>3. Establish the Equilibrium Condition</b></p>
             <p>
                 For (Aggressive, MM) to be the Bayesian Nash Equilibrium, the IPP's expected utility for playing Aggressive must strictly exceed playing Conservative:
             </p>
