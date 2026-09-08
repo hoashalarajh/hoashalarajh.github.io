@@ -187,51 +187,14 @@
         .data-table tr:nth-child(even) { background-color: #fcfcfc; }
         }
 
-        /* Academic Algorithm Formatting */
-        .algo-box {
-            background-color: #ffffff;
-            border-top: 2px solid #333;
-            border-bottom: 2px solid #333;
-            padding: 15px 20px;
-            margin: 30px 0;
-            font-family: 'Times New Roman', Times, serif; /* Traditional academic font */
-            color: #333;
-            font-size: 1.05rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        
-        .algo-header {
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .algo-header p {
-            margin: 5px 0;
-        }
-        
-        .algo-content p {
-            margin: 4px 0;
-            line-height: 1.5;
-        }
-        
-        .algo-keyword {
-            font-weight: bold;
-            color: #000;
-        }
-        
-        .algo-comment {
-            color: #2e7d32;
-            font-style: italic;
-            margin-top: 10px;
-        }
-        
-        /* Indentation levels */
-        .indent-1 { margin-left: 20px; }
-        .indent-2 { margin-left: 40px; }
-        .indent-3 { margin-left: 60px; }
-        }
-        
+        /* Algorithm Box Styling */
+        .algorithm-box { background-color: #f4f6f9; border-left: 4px solid #2c3e50; padding: 15px 20px; font-family: 'Courier New', Courier, monospace; font-size: 0.95em; overflow-x: auto; margin: 20px 0; border-radius: 0 4px 4px 0; line-height: 1.6; }
+        .algo-keyword { color: #0056b3; font-weight: bold; }
+        .algo-comment { color: #28a745; font-style: italic; }
+        .algo-indent-1 { margin-left: 20px; }
+        .algo-indent-2 { margin-left: 40px; }
+        .algo-indent-3 { margin-left: 60px; }
+        }  
     </style>
 </head>
 <body>
@@ -380,46 +343,31 @@
         <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">5. Computational Algorithm</h4>
         <p>To programmatically determine the market equilibrium, the theoretical framework is implemented using the following computational steps to evaluate all possible strategy spaces:</p>
         
-        <div class="algo-box">
-            <div class="algo-header">
-                <p><b>Algorithm 1:</b> Compute Pure-Strategy Bayesian Nash Equilibrium</p>
-                <p><b>Require:</b> Probabilities <i>P(&theta;<sub>High</sub>)</i>, <i>P(&theta;<sub>Low</sub>)</i>, Marginal Costs <i>C<sub>IPP</sub></i>, <i>C<sub>Wind</sub></i>, OPF_Data</p>
-                <p><b>Ensure:</b> Equilibrium Profile (<i>s<sup>*</sup><sub>IPP</sub></i>, <i>s<sup>*</sup><sub>Wind</sub></i>)</p>
-            </div>
-        
-            <div class="algo-content">
-                <p class="algo-comment">/* Phase 1: Compute Ex-Post Payoffs */</p>
-                <p><span class="algo-keyword">for all</span> state <i>&theta; &isin; {High, Low}</i> <span class="algo-keyword">do</span></p>
-                
-                <p class="indent-1"><span class="algo-keyword">for all</span> action profile <i>(a<sub>IPP</sub>, a<sub>Wind</sub>)</i> <span class="algo-keyword">do</span></p>
-                <p class="indent-2"><i>LMP, Disp &larr;</i> Extract from OPF_Data<i>(&theta;, a<sub>IPP</sub>, a<sub>Wind</sub>)</i></p>
-                <p class="indent-2"><i>U<sub>IPP</sub>(&theta;, a) &larr; (LMP<sub>IPP</sub> - C<sub>IPP</sub>) &times; Disp<sub>IPP</sub></i></p>
-                <p class="indent-2"><i>U<sub>Wind</sub>(&theta;, a) &larr; (LMP<sub>Wind</sub> - C<sub>Wind</sub>) &times; Disp<sub>Wind</sub></i></p>
-                <p class="indent-1"><span class="algo-keyword">end for</span></p>
-                
-                <p><span class="algo-keyword">end for</span></p>
-        
-                <p class="algo-comment">/* Phase 2: Construct Ex-Ante Expected Utility Matrix */</p>
-                <p><span class="algo-keyword">Define</span> WindStrategies <i>s<sub>Wind</sub> &isin; {WW, WM, MW, MM}</i></p>
-                
-                <p><span class="algo-keyword">for all</span> <i>s<sub>IPP</sub> &isin; {Conservative, Aggressive}</i> <span class="algo-keyword">do</span></p>
-                
-                <p class="indent-1"><span class="algo-keyword">for all</span> <i>s<sub>Wind</sub></i> <span class="algo-keyword">do</span></p>
-                <p class="indent-2"><i>E[U<sub>IPP</sub>] &larr; P(&theta;<sub>High</sub>)&times;U<sub>IPP</sub>(&theta;<sub>High</sub>) + P(&theta;<sub>Low</sub>)&times;U<sub>IPP</sub>(&theta;<sub>Low</sub>)</i></p>
-                <p class="indent-2"><i>E[U<sub>Wind</sub>] &larr; P(&theta;<sub>High</sub>)&times;U<sub>Wind</sub>(&theta;<sub>High</sub>) + P(&theta;<sub>Low</sub>)&times;U<sub>Wind</sub>(&theta;<sub>Low</sub>)</i></p>
-                <p class="indent-2">ExpectedUtilityMatrix<i>[s<sub>IPP</sub>][s<sub>Wind</sub>] &larr; (E[U<sub>IPP</sub>], E[U<sub>Wind</sub>])</i></p>
-                <p class="indent-1"><span class="algo-keyword">end for</span></p>
-                
-                <p><span class="algo-keyword">end for</span></p>
-        
-                <p class="algo-comment">/* Phase 3: Identify Mutual Best Responses (BNE) */</p>
-                <p><span class="algo-keyword">for all</span> player <i>i &isin; {IPP, Wind}</i> <span class="algo-keyword">do</span></p>
-                <p class="indent-1"><i>BR<sub>i</sub>(s<sub>-i</sub>) &larr; argmax E[U<sub>i</sub>(s<sub>i</sub>, s<sub>-i</sub>)]</i></p>
-                <p><span class="algo-keyword">end for</span></p>
-        
-                <p><span class="algo-keyword">Find</span> profiles where <i>s<sub>IPP</sub> &isin; BR<sub>IPP</sub>(s<sub>Wind</sub>)</i> <span class="algo-keyword">and</span> <i>s<sub>Wind</sub> &isin; BR<sub>Wind</sub>(s<sub>IPP</sub>)</i></p>
-                <p><span class="algo-keyword">return</span> matching profiles as BNE</p>
-            </div>
+        <div class="algorithm-box">
+            <span class="algo-keyword">Algorithm:</span> Compute Pure-Strategy Bayesian Nash Equilibrium<br>
+            <span class="algo-keyword">Inputs:</span> Probabilities <i>P(&theta;<sub>High</sub>), P(&theta;<sub>Low</sub>)</i>, Marginal Costs <i>C<sub>IPP</sub>, C<sub>Wind</sub></i>, OPF_Data<br>
+            <span class="algo-keyword">Output:</span> Equilibrium Profile (s<sup>*</sup><sub>IPP</sub>, s<sup>*</sup><sub>Wind</sub>)<br>
+            <br>
+            <span class="algo-comment">// Phase 1: Compute Ex-Post Payoffs</span><br>
+            <span class="algo-keyword">FOR EACH</span> state &theta; &isin; {High, Low}:<br>
+            <div class="algo-indent-1"><span class="algo-keyword">FOR EACH</span> action profile (a<sub>IPP</sub>, a<sub>Wind</sub>):</div>
+            <div class="algo-indent-2">LMP, Disp &larr; Extract from OPF_Data(&theta;, a<sub>IPP</sub>, a<sub>Wind</sub>)</div>
+            <div class="algo-indent-2">U<sub>IPP</sub>(&theta;, a) &larr; (LMP<sub>IPP</sub> - C<sub>IPP</sub>) &times; Disp<sub>IPP</sub></div>
+            <div class="algo-indent-2">U<sub>Wind</sub>(&theta;, a) &larr; (LMP<sub>Wind</sub> - C<sub>Wind</sub>) &times; Disp<sub>Wind</sub></div>
+            <br>
+            <span class="algo-comment">// Phase 2: Construct Ex-Ante Expected Utility Matrix</span><br>
+            <span class="algo-keyword">DEFINE</span> WindStrategies s<sub>Wind</sub> &isin; {WW, WM, MW, MM}<br>
+            <span class="algo-keyword">FOR EACH</span> s<sub>IPP</sub> &isin; {Conservative, Aggressive}:<br>
+            <div class="algo-indent-1"><span class="algo-keyword">FOR EACH</span> s<sub>Wind</sub>:</div>
+            <div class="algo-indent-2">E[U<sub>IPP</sub>] &larr; P(&theta;<sub>High</sub>)&times;U<sub>IPP</sub>(&theta;<sub>High</sub>) + P(&theta;<sub>Low</sub>)&times;U<sub>IPP</sub>(&theta;<sub>Low</sub>)</div>
+            <div class="algo-indent-2">E[U<sub>Wind</sub>] &larr; P(&theta;<sub>High</sub>)&times;U<sub>Wind</sub>(&theta;<sub>High</sub>) + P(&theta;<sub>Low</sub>)&times;U<sub>Wind</sub>(&theta;<sub>Low</sub>)</div>
+            <div class="algo-indent-2">ExpectedUtilityMatrix[s<sub>IPP</sub>][s<sub>Wind</sub>] &larr; (E[U<sub>IPP</sub>], E[U<sub>Wind</sub>])</div>
+            <br>
+            <span class="algo-comment">// Phase 3: Identify Mutual Best Responses (BNE)</span><br>
+            <span class="algo-keyword">FOR EACH</span> player <i>i</i> &isin; {IPP, Wind}:<br>
+            <div class="algo-indent-1">BR<sub>i</sub>(s<sub>-i</sub>) &larr; argmax E[U<sub>i</sub>(s<sub>i</sub>, s<sub>-i</sub>)]</div>
+            <span class="algo-keyword">FIND</span> profiles where s<sub>IPP</sub> &isin; BR<sub>IPP</sub>(s<sub>Wind</sub>) <span class="algo-keyword">AND</span> s<sub>Wind</sub> &isin; BR<sub>Wind</sub>(s<sub>IPP</sub>)<br>
+            <span class="algo-keyword">RETURN</span> matching profiles as BNE
         </div>
 
         <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">4. Proposition & Equilibrium Analysis</h4>
