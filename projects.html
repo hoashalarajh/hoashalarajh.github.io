@@ -379,33 +379,62 @@
             <span class="algo-keyword">RETURN</span> matching profiles (s<sup>*</sup><sub>IPP</sub>, s<sup>*</sup><sub>Wind</sub>)
         </div>
 
-        <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">4. Proposition & Equilibrium Analysis</h4>
-        <div style="background-color: #f1f8ff; padding: 20px; border-left: 5px solid #007bff; border-radius: 4px; margin-bottom: 15px;">
-            <p style="font-size: 1.1em; color: #0056b3; margin-top: 0;"><b>Proposition:</b></p>
-            <p style="font-style: italic; margin-bottom: 15px;">
-                The strategy profile <b>s* = (Aggressive, (Max, Max))</b> constitutes the unique pure-strategy Bayesian Nash Equilibrium (BNE) of the modeled electricity market game.
+        <div style="background-color: #f8f9fa; border-left: 4px solid #2c3e50; padding: 20px; margin: 30px 0; border-radius: 0 5px 5px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <h4 style="margin-top: 0; color: #2c3e50; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Proposition</h4>
+            <p>
+                Let $p \in [0, 1]$ represent the probability of the High Wind state ($\theta_{High}$) and $1-p$ represent the probability of the Low Wind state ($\theta_{Low}$). The strategic bidding game yields a unique pure-strategy Bayesian Nash Equilibrium (BNE) that is strictly dependent on the threshold probability $p^* = \frac{3551}{5111} \approx 0.695$:
+            </p>
+            <ul style="margin-bottom: 20px;">
+                <li>If $p < 0.695$, the unique BNE is <b>(Aggressive, MM)</b>.</li>
+                <li>If $p > 0.695$, the unique BNE is <b>(Conservative, MM)</b>.</li>
+            </ul>
+        
+            <h4 style="margin-top: 0; color: #2c3e50; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Mathematical Proof</h4>
+            
+            <p><b>Step 1: Identify the Wind Generator's Dominant Strategy</b></p>
+            <p>
+                The Wind generator observes the state of nature ($\theta$) prior to bidding. Because the Wind generator operates with a marginal cost of $C_{Wind} = \$0/MWh$, its profit is strictly positive as long as the Market Clearing Price (LMP) is greater than zero.
+            </p>
+            <ul>
+                <li><b>In state $\theta_{High}$:</b> Bidding "Max" yields either $\$4800$ or $\$2460$ (depending on IPP's action), whereas "Withhold" yields $\$0$. Max strictly dominates Withhold.</li>
+                <li><b>In state $\theta_{Low}$:</b> Bidding "Max" yields either $\$800$ or $\$418$, whereas "Withhold" yields $\$0$. Max strictly dominates Withhold.</li>
+            </ul>
+            <p>
+                Since "Max" is strictly dominant in both states regardless of the probability $p$ or the IPP's action, the Wind generator will always play the strategy (Max, Max), denoted as <b>MM</b>.
+            </p>
+        
+            <p style="margin-top: 15px;"><b>Step 2: Formulate the IPP's Expected Utility</b></p>
+            <p>
+                Knowing the Wind generator will play MM, the IPP must maximize its expected utility ($EU_{IPP}$) across the unknown states of nature. We formulate the IPP's expected utility as a function of $p$.
+            </p>
+            <p>If the IPP plays <b>Conservative</b> against MM:</p>
+            <p style="text-align: center; margin: 10px 0;">
+                $$EU_{IPP}(\text{Conservative, MM}) = p \cdot U_{IPP}(\theta_{High}) + (1-p) \cdot U_{IPP}(\theta_{Low})$$
+                $$EU_{IPP}(\text{Conservative, MM}) = p(2000) + (1-p)(2000) = 2000$$
             </p>
             
-            <p style="font-weight: bold; margin-bottom: 5px;">Proof:</p>
-            <ol style="margin-left: 20px; line-height: 1.7;">
-                <li><b>Identify strictly dominant strategies for the Wind generator:</b><br>
-                The Wind generator operates at zero marginal cost ($0/MWh). Consequently, its profit strictly correlates with the total dispatched volume, assuming a non-negative Locational Marginal Pricing (LMP). Analyzing the Ex-Post payoffs, bidding "Max" yields a strictly higher payoff than "Withhold" against any IPP bid in <i>both</i> High and Low wind conditions. Therefore, the strategy mapping to play Max under all conditions, denoted as <b>MM (Max, Max)</b>, is strictly dominant.
-                </li>
-                <br>
-                <li><b>Identify the IPP's Best Response (BR):</b><br>
-                Recognizing that a rational Wind player will execute its strictly dominant strategy (MM), the IPP evaluates its expected payoffs conditionally against MM using the Bayesian Normal Form matrix:
-                <ul style="list-style-type: circle; margin-left: 20px; margin-top: 5px; margin-bottom: 5px;">
-                    <li><i>EU<sub>IPP</sub>(Conservative | MM) = 2000.0</i></li>
-                    <li><i>EU<sub>IPP</sub>(Aggressive | MM) = 2484.4</i></li>
-                </ul>
-                Because 2484.4 > 2000.0, the IPP's strict best response to MM is to bid <b>Aggressive</b>.
-                </li>
-                <br>
-                <li><b>Conclusion:</b><br>
-                Given the profile (Aggressive, MM), neither player possesses a financial incentive to unilaterally deviate. Furthermore, because MM is derived via strict dominance, this Bayesian Nash Equilibrium point is mathematically unique. 
-                <span style="float: right; font-size: 1.5em; line-height: 1;">&#8718;</span>
-                </li>
-            </ol>
+            <p>If the IPP plays <b>Aggressive</b> against MM:</p>
+            <p style="text-align: center; margin: 10px 0;">
+                $$EU_{IPP}(\text{Aggressive, MM}) = p \cdot U_{IPP}(\theta_{High}) + (1-p) \cdot U_{IPP}(\theta_{Low})$$
+                $$EU_{IPP}(\text{Aggressive, MM}) = p(440) + (1-p)(5551)$$
+                $$EU_{IPP}(\text{Aggressive, MM}) = 5551 - 5111p$$
+            </p>
+        
+            <p style="margin-top: 15px;"><b>Step 3: Establish the Equilibrium Condition</b></p>
+            <p>
+                For (Aggressive, MM) to be the Bayesian Nash Equilibrium, the IPP's expected utility for playing Aggressive must strictly exceed playing Conservative:
+            </p>
+            <p style="text-align: center; margin: 10px 0;">
+                $$5551 - 5111p > 2000$$
+            </p>
+            <p>Solving for $p$:</p>
+            <p style="text-align: center; margin: 10px 0;">
+                $$3551 > 5111p$$
+                $$p < \frac{3551}{5111} \approx 0.69477...$$
+            </p>
+            <p>
+                Therefore, as long as the probability of High Wind ($p$) remains below approximately $69.5\%$, the IPP's best response to Wind's dominant strategy is Aggressive, establishing (Aggressive, MM) as the unique equilibrium. If the probability of High Wind exceeds this threshold, the IPP's expected utility for Aggressive drops below $\$2000$, making Conservative the rational best response, thereby shifting the equilibrium to (Conservative, MM). $\blacksquare$
+            </p>
         </div>
     </div>
 
