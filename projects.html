@@ -229,9 +229,15 @@
         
         <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">1. Model Parameters & Optimal Power Flow (OPF) Data</h4>
         <p>
-            The fundamental parameters of the game establish the cost structure and the probabilities of the hidden states of nature.
+            The fundamental parameters of the game establish the physical generation limits, the cost structure, and the probabilities of the hidden states of nature.
+            <br><b>Maximum Capacities:</b> <br>
+            <li>
+            <b>Grid Generator (Bus 1 - Slack Bus):</b> 9999 MW, This acts as an effectively infinite capacity connection to ensure the grid can always balance load deficits and transmission losses<br>
+            <b>IPP Generator (Bus 2 - Gas):</b> 100 MW, This is the absolute physical capacity of the plant, which is fully offered when the IPP chooses the "Aggressive" bidding action<br>
+            <b>Wind Generator (Bus 3 - Renewable):</b> 60 MW, This represents the maximum generation achievable when Nature dictates a "High" wind state (which drops to 10 MW during a "Low" wind state)
+            </li>
             <br><b>Marginal Costs:</b> IPP = $30.0/MWh, Wind = $0.0/MWh.
-            <br><b>Probabilities of Nature's States:</b> High Wind (Max Capacity: 60 MW) = 0.6, Low Wind (Max Capacity: 10 MW) = 0.4.
+            <br><b>Probabilities of Nature's States:</b> High Wind = 0.6, Low Wind = 0.4.
         </p>
 
         <div style="text-align: center; margin: 20px 0;">
