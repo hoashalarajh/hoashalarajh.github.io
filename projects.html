@@ -224,12 +224,12 @@
             <br><b>Marginal Costs:</b> IPP = $30.0/MWh, Wind = $0.0/MWh.
             <br><b>Probabilities of Nature's States:</b> High Wind (Max Capacity: 60 MW) = 0.6, Low Wind (Max Capacity: 10 MW) = 0.4.
         </p>
-        
-        <p>The payoffs are derived from a simulated physical Optimal Power Flow (OPF). Below is the raw structural OPF dataset representing [LMP IPP, Dispatch IPP, LMP Wind, Dispatch Wind] under all possible action profiles and states:</p>
 
         <div style="text-align: center; margin: 20px 0;">
             <img src="3bus.png" alt="3 Bus System" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
         </div>
+        
+        <p>The payoffs are derived from a simulated physical Optimal Power Flow (OPF). Below is the raw structural OPF dataset representing [LMP IPP, Dispatch IPP, LMP Wind, Dispatch Wind] under all possible action profiles and states:</p>
                     
         <div style="overflow-x: auto;">
             <table class="data-table">
@@ -332,6 +332,36 @@
             </table>
         </div>
 
+        <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">5. Computational Algorithm</h4>
+        <p>To programmatically determine the market equilibrium, the theoretical framework is implemented using the following computational steps to evaluate all possible strategy spaces:</p>
+        
+        <div class="algorithm-box">
+            <span class="algo-keyword">Algorithm:</span> Compute Pure-Strategy Bayesian Nash Equilibrium<br>
+            <span class="algo-keyword">Inputs:</span> Probabilities <i>P(&theta;<sub>High</sub>), P(&theta;<sub>Low</sub>)</i>, Marginal Costs <i>C<sub>IPP</sub>, C<sub>Wind</sub></i>, OPF_Data<br>
+            <span class="algo-keyword">Output:</span> Equilibrium Profile (s<sup>*</sup><sub>IPP</sub>, s<sup>*</sup><sub>Wind</sub>)<br>
+            <br>
+            <span class="algo-comment">// Phase 1: Compute Ex-Post Payoffs</span><br>
+            <span class="algo-keyword">FOR EACH</span> state &theta; &isin; {High, Low}:<br>
+            <div class="algo-indent-1"><span class="algo-keyword">FOR EACH</span> action profile (a<sub>IPP</sub>, a<sub>Wind</sub>):</div>
+            <div class="algo-indent-2">LMP, Disp &larr; Extract from OPF_Data(&theta;, a<sub>IPP</sub>, a<sub>Wind</sub>)</div>
+            <div class="algo-indent-2">U<sub>IPP</sub>(&theta;, a) &larr; (LMP<sub>IPP</sub> - C<sub>IPP</sub>) &times; Disp<sub>IPP</sub></div>
+            <div class="algo-indent-2">U<sub>Wind</sub>(&theta;, a) &larr; (LMP<sub>Wind</sub> - C<sub>Wind</sub>) &times; Disp<sub>Wind</sub></div>
+            <br>
+            <span class="algo-comment">// Phase 2: Construct Ex-Ante Expected Utility Matrix</span><br>
+            <span class="algo-keyword">DEFINE</span> WindStrategies s<sub>Wind</sub> &isin; {WW, WM, MW, MM}<br>
+            <span class="algo-keyword">FOR EACH</span> s<sub>IPP</sub> &isin; {Conservative, Aggressive}:<br>
+            <div class="algo-indent-1"><span class="algo-keyword">FOR EACH</span> s<sub>Wind</sub>:</div>
+            <div class="algo-indent-2">E[U<sub>IPP</sub>] &larr; P(&theta;<sub>High</sub>)&times;U<sub>IPP</sub>(&theta;<sub>High</sub>) + P(&theta;<sub>Low</sub>)&times;U<sub>IPP</sub>(&theta;<sub>Low</sub>)</div>
+            <div class="algo-indent-2">E[U<sub>Wind</sub>] &larr; P(&theta;<sub>High</sub>)&times;U<sub>Wind</sub>(&theta;<sub>High</sub>) + P(&theta;<sub>Low</sub>)&times;U<sub>Wind</sub>(&theta;<sub>Low</sub>)</div>
+            <div class="algo-indent-2">ExpectedUtilityMatrix[s<sub>IPP</sub>][s<sub>Wind</sub>] &larr; (E[U<sub>IPP</sub>], E[U<sub>Wind</sub>])</div>
+            <br>
+            <span class="algo-comment">// Phase 3: Identify Mutual Best Responses (BNE)</span><br>
+            <span class="algo-keyword">FOR EACH</span> player <i>i</i> &isin; {IPP, Wind}:<br>
+            <div class="algo-indent-1">BR<sub>i</sub>(s<sub>-i</sub>) &larr; argmax E[U<sub>i</sub>(s<sub>i</sub>, s<sub>-i</sub>)]</div>
+            <span class="algo-keyword">FIND</span> profiles where s<sub>IPP</sub> &isin; BR<sub>IPP</sub>(s<sub>Wind</sub>) <span class="algo-keyword">AND</span> s<sub>Wind</sub> &isin; BR<sub>Wind</sub>(s<sub>IPP</sub>)<br>
+            <span class="algo-keyword">RETURN</span> matching profiles as BNE
+        </div>
+
         <h4 style="color: #2980b9; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">4. Proposition & Equilibrium Analysis</h4>
         <div style="background-color: #f1f8ff; padding: 20px; border-left: 5px solid #007bff; border-radius: 4px; margin-bottom: 15px;">
             <p style="font-size: 1.1em; color: #0056b3; margin-top: 0;"><b>Proposition:</b></p>
@@ -361,28 +391,6 @@
             </ol>
         </div>
     </div>
-
-        <div class="project-card">
-            <h3> <a href="https://github.com/hoashalarajh/task_oriented_conversation_system" target="_blank"> Humanization in Task-oriented Conversational Agents </a></h3>
-            <p class="tech-stack"><strong>Tools:</strong> Python, NLP, LLM, Algorithms</p>
-            <p> 
-                A short-term, extended task-oriented conversation system designed to gather user feedback about a lecture in a user-centered manner. The system leverages hierarchical state transitions to guide the conversation effectively.
-                <br><br>
-                <b>How this system is different and serves your purpose?</b>
-                <br>
-                A key advantage of this system is its adaptability to specific requirements. The pre-defined scripts utilized in the original implementation can be entirely replaced with your own custom scripts.
-                <br><br>
-                <b>Key features include:</b>
-                <ul style="list-style-type: disc; margin-left: 20px;">
-                    <li><b>State Management:</b> The architecture currently supports a maximum of four "superstates."</li>
-                    <li><b>Survey Structuring:</b> It is recommended to partition your survey questions into up to four main thematic blocks.</li>
-                    <li><b>Scalability:</b> Each block can handle an unlimited number of individual questions.</li>
-                </ul>
-            </p>
-            <div class="project-gallery">
-              <img src="HSTN.png" alt="HSTN Diagram" class="project-img">
-            </div>
-        </div>
 
         <div class="project-card">
         <h3>Digital Twin of an Intelligent Production line with Adaptive Resource Handling</h3>
@@ -433,6 +441,28 @@
             Your browser does not support the video tag.
         </video>
     </div>
+
+        <div class="project-card">
+            <h3> <a href="https://github.com/hoashalarajh/task_oriented_conversation_system" target="_blank"> Humanization in Task-oriented Conversational Agents </a></h3>
+            <p class="tech-stack"><strong>Tools:</strong> Python, NLP, LLM, Algorithms</p>
+            <p> 
+                A short-term, extended task-oriented conversation system designed to gather user feedback about a lecture in a user-centered manner. The system leverages hierarchical state transitions to guide the conversation effectively.
+                <br><br>
+                <b>How this system is different and serves your purpose?</b>
+                <br>
+                A key advantage of this system is its adaptability to specific requirements. The pre-defined scripts utilized in the original implementation can be entirely replaced with your own custom scripts.
+                <br><br>
+                <b>Key features include:</b>
+                <ul style="list-style-type: disc; margin-left: 20px;">
+                    <li><b>State Management:</b> The architecture currently supports a maximum of four "superstates."</li>
+                    <li><b>Survey Structuring:</b> It is recommended to partition your survey questions into up to four main thematic blocks.</li>
+                    <li><b>Scalability:</b> Each block can handle an unlimited number of individual questions.</li>
+                </ul>
+            </p>
+            <div class="project-gallery">
+              <img src="HSTN.png" alt="HSTN Diagram" class="project-img">
+            </div>
+        </div>
         
     </section>
 
