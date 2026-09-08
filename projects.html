@@ -292,7 +292,7 @@
         
         <div style="display: flex; gap: 20px; flex-wrap: wrap;">
             <div style="flex: 1; min-width: 300px;">
-                <p style="margin-bottom: 5px;"><b>State: High Wind</b></p>
+                <p style="margin-bottom: 5px;"><b>State: High Wind (&theta;<sub>High</sub>)</b></p>
                 <table class="data-table" style="margin-top: 0;">
                     <tr><th>IPP \ Wind</th><th>Withhold</th><th>Max</th></tr>
                     <tr><td><b>Conservative</b></td><td>(2000, 0)</td><td>(2000, 4800)</td></tr>
@@ -300,7 +300,7 @@
                 </table>
             </div>
             <div style="flex: 1; min-width: 300px;">
-                <p style="margin-bottom: 5px;"><b>State: Low Wind</b></p>
+                <p style="margin-bottom: 5px;"><b>State: Low Wind (&theta;<sub>Low</sub></b></p>
                 <table class="data-table" style="margin-top: 0;">
                     <tr><th>IPP \ Wind</th><th>Withhold</th><th>Max</th></tr>
                     <tr><td><b>Conservative</b></td><td>(2000, 0)</td><td>(2000, 800)</td></tr>
@@ -349,14 +349,14 @@
             <span class="algo-keyword">Inputs:</span> Probabilities <i>P(&theta;<sub>High</sub>), P(&theta;<sub>Low</sub>)</i>, Marginal Costs <i>C<sub>IPP</sub>, C<sub>Wind</sub></i>, OPF_Data<br>
             <span class="algo-keyword">Output:</span> Equilibrium Profile (s<sup>*</sup><sub>IPP</sub>, s<sup>*</sup><sub>Wind</sub>)<br>
             <br>
-            <span class="algo-comment">// Phase 1: Compute Ex-Post Payoffs</span><br>
+            <span class="algo-comment">// Phase 1: Compute Payoffs Considering Complete Information</span><br>
             <span class="algo-keyword">FOR EACH</span> state &theta; &isin; {High, Low}:<br>
             <div class="algo-indent-1"><span class="algo-keyword">FOR EACH</span> action profile (a<sub>IPP</sub>, a<sub>Wind</sub>):</div>
             <div class="algo-indent-2">LMP, Disp &larr; Extract from OPF_Data(&theta;, a<sub>IPP</sub>, a<sub>Wind</sub>)</div>
             <div class="algo-indent-2">U<sub>IPP</sub>(&theta;, a) &larr; (LMP<sub>IPP</sub> - C<sub>IPP</sub>) &times; Disp<sub>IPP</sub></div>
             <div class="algo-indent-2">U<sub>Wind</sub>(&theta;, a) &larr; (LMP<sub>Wind</sub> - C<sub>Wind</sub>) &times; Disp<sub>Wind</sub></div>
             <br>
-            <span class="algo-comment">// Phase 2: Construct Ex-Ante Expected Utility Matrix</span><br>
+            <span class="algo-comment">// Phase 2: Construct Expected Utility Matrix</span><br>
             <span class="algo-keyword">DEFINE</span> WindStrategies s<sub>Wind</sub> &isin; {WW, WM, MW, MM}<br>
             <span class="algo-keyword">FOR EACH</span> s<sub>IPP</sub> &isin; {Conservative, Aggressive}:<br>
             <div class="algo-indent-1"><span class="algo-keyword">FOR EACH</span> s<sub>Wind</sub>:</div>
